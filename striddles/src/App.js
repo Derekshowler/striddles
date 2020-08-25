@@ -1,21 +1,18 @@
 import React from 'react';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Route, BrowserRouter } from 'react-router-dom';
 import styled from 'styled-components';
 
-import navMenu from './components/navMenu';
-import Home from './pages/Home';
-import Login from './pages/Login';
-import Register from './pages/Register';
-
+import Navbar from './components/navigation/Navbar';
+import Home from './components/pages/Home';
+import Login from './components/pages/Login';
+import Register from './components/pages/Register';
 
 function App() {
   return (
-    <Router>
-        <navMenu/>
-        <Route exact path="/" component={Home} />
-        <Route exact path="/login" component={Login} />
-        <Route exact path="/register" component={Register} />
-    </Router>
+    <BrowserRouter>
+      <Navbar></Navbar>
+    </BrowserRouter>
+    
   );
 }
 
