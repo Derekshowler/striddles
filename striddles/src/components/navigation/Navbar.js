@@ -15,7 +15,6 @@ class Navbar extends Component {
         return (
             <NavbarStyled>
                 <DesktopNavbar/>
-                <MobileNavbar/>
             </NavbarStyled>
             );
         }

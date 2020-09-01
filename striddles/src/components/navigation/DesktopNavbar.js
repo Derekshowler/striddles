@@ -7,29 +7,21 @@ const DesktopNavbarStyled = styled.nav `
     display: flex;
     flex-flow: row nowrap;
     justify-content: space-evenly;
-    align-items: center;
-
+    align-items: end;
+    
     background: #2d545e;
     color: white;
 
-    height: 10vh;
-
-    .logo {
-        font-size: 7vh;
-        font-weight: bold;
-        font-family: 'Roboto Mono', monospace;
-        text-shadow: 3px 3px 3px black;
-        
-    }
+    height: 5vh;
 
     .navLinks {
         display: flex;
         flex-flow: row nowrap;
         justify-content: space-evenly;
-        align-items: center;
-
+        align-items: end;
+        margin: 5px;
         list-style: none;
-
+        font-family: 'Caveat', cursive;
         width: 35vw;
     }
 
@@ -40,19 +32,26 @@ const DesktopNavbarStyled = styled.nav `
     }
 `;
 
-const MobileNavButtonStyled = styled.button `
-    background: transparent;
-    border: none;
-    height: 6vh;
-    width: 6vh;
-    color: white;
+const LogoStyled = styled.div `
+        margin: 5px;
+        align-content: left;
+
+        .textLink {
+            font-size: 2.5vh;
+            font-family: 'Caveat', cursive;
+            text-shadow: 3px 3px 3px black;
+            color: white;
+            text-decoration: none;
+        }
+
 `;
 
 const DesktopNavbar = () => {
     return (
         <DesktopNavbarStyled>
-            <div className = "logo">Striddles</div>
-
+            <LogoStyled>
+                <a className = "textLink" href = "/">Striddles</a>
+            </LogoStyled>
             <NavLinks></NavLinks>
 
         </DesktopNavbarStyled>
