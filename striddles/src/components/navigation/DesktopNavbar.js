@@ -8,18 +8,17 @@ const DesktopNavbarStyled = styled.nav `
     flex-flow: row nowrap;
     justify-content: space-evenly;
     align-items: end;
-    
-    background: #2d545e;
+    background: #264653;
     color: white;
-
-    height: 5vh;
+    height: 7.5vh;
+    
 
     .navLinks {
         display: flex;
         flex-flow: row nowrap;
         justify-content: space-evenly;
         align-items: end;
-        margin: 5px;
+        margin: 17px;
         list-style: none;
         font-family: 'Caveat', cursive;
         width: 35vw;
@@ -29,6 +28,11 @@ const DesktopNavbarStyled = styled.nav `
         color: white;
         font-size: 2.5vh;
         text-decoration: none;
+        padding: .5em 1em;
+
+        :hover {
+            background-color: #2a9d8f;
+        }
     }
 `;
 
@@ -37,11 +41,17 @@ const LogoStyled = styled.div `
         align-content: left;
 
         .textLink {
-            font-size: 2.5vh;
+            font-size: 45px;
             font-family: 'Caveat', cursive;
             text-shadow: 3px 3px 3px black;
             color: white;
             text-decoration: none;
+            padding: .5em 1em;
+
+            :hover {
+                background-color: #2a9d8f;
+                cursor: pointer;
+            }
         }
 
 `;

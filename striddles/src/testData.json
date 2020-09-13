@@ -1,0 +1,47 @@
+{
+    "movies": [
+      {
+        "title": "Movie 01",
+        "description": "Description",
+        "rating": "32%",
+        "criticScore": "Critic Score"
+      },
+      {
+        "title": "Movie 02",
+        "description": "Description"
+      },
+      {
+        "title": "Movie 03",
+        "description": "Description"
+      },
+      {
+        "title": "Movie 04",
+        "description": "Description"
+      },
+      {
+        "title": "Movie 05",
+        "description": "Description"
+      },
+      {
+        "title": "Movie 06",
+        "description": "Description"
+      },
+      {
+        "title": "Movie 07",
+        "description": "Description"
+      },
+      {
+        "title": "Movie 08",
+        "description": "Description"
+      },
+      {
+        "title": "Movie 09",
+        "description": "Description"
+      },
+      {
+        "title": "Movie 10",
+        "description": "Description"
+      }
+    ]
+  }
+  
