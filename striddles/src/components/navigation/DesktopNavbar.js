@@ -8,9 +8,14 @@ const DesktopNavbarStyled = styled.nav `
     flex-flow: row nowrap;
     justify-content: space-evenly;
     align-items: end;
-    background: #264653;
+    background: black;
     color: white;
     height: 7.5vh;
+
+    @media screen and (max-width: 500px) {
+      max-width: 1280px;
+      min-height: 0px;
+    }
     
 
     .navLinks {

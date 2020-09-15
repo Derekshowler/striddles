@@ -1,6 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 
+
+//background-position: center, center !important;
 const StyledHeroImage = styled.div`
   background: ${props =>
     `linear-gradient(
@@ -11,7 +13,6 @@ const StyledHeroImage = styled.div`
     ),
     url('${props.image}'), #1c1c1c`};
   background-size: 100%, cover !important;
-  background-position: center, center !important;
   width: 100%;
   height: 600px;
   position: relative;
@@ -35,7 +36,7 @@ const StyledHeroImage = styled.div`
 
     h1 {
       font-family: 'Caveat', cursive;
-      font-size: 38px;
+      font-size: 42px;
       color: #fff;
 
       @media screen and (max-width: 720px) {

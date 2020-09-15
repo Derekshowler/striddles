@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import DesktopNavbar from './DesktopNavbar';
-import MobileNavbar from './MobileNavbar';
 import styled from 'styled-components';
 
 

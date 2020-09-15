@@ -9,7 +9,7 @@ const StyledGrid = styled.div`
     font-family: 'Caveat', cursive;
     color: white;
     padding: 20px;
-    font-size: 42px;
+    font-size: 37px;
 
     @media screen and (max-width: 768px) {
       font-size: 22px;

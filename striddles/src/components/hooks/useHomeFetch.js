@@ -1,25 +1,30 @@
 import { useState, useEffect } from 'react';
-import { API_URL, API_KEY } from '../../config';
+import { TRENDING_TV_URL } from '../../config';
 
 export const useHomeFetch = () => {
-  const [state, setState] = useState({ movies: [] });
+  const [state, setState] = useState({ series: [] });
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
 
   console.log(state);
 
-  const fetchMovies = async (endpoint) => {
+  const fetchTV = async (endpoint) => {
     setError(false);
     setLoading(true);
+
+    const isLoadMore = endpoint.search('page');
 
     try {
       const result = await (await fetch(endpoint)).json();
       setState((prev) => ({
         ...prev,
-        movies: [...result.results],
-        heroImage: prev.heroImage || result.results[1],
+        series: 
+          isLoadMore !== -1
+          ? [...prev.series, ...result.results]
+          : [...result.results],
+        heroImage: prev.heroImage || result.results[7],
         currentPage: result.page,
-        totalPages: result.toal_pages,
+        totalPages: result.total_pages,
       }));
 
     } catch (error) {
@@ -30,9 +35,9 @@ export const useHomeFetch = () => {
   };
 
   useEffect(() => {
-    fetchMovies(`${API_URL}trending/tv/week?api_key=${API_KEY}`);
+    fetchTV(TRENDING_TV_URL);
   }, [])
 
-  return [{ state, loading, error}, fetchMovies];
+  return [{ state, loading, error}, fetchTV];
 }
 

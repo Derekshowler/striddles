@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import {
-  API_URL,
-  API_KEY,
-  API_BASE_URL,
+  POPULAR_BASE_URL,
+  TRENDING_TV_URL,
+  SEARCH_BASE_URL,
   POSTER_SIZE,
-  BACKDROP_SIZE, IMAGE_BASE_URL
+  BACKDROP_SIZE,
+  IMAGE_BASE_URL,
 } from '../../config';
 
 //import components we want to use on this page..
@@ -22,45 +23,66 @@ import NoImage from '../../components/assets/images/no_image.jpg';
 
 const Home = () => {
   const [
-    { 
-      state: {movies, currentPage, totalPages, heroImage}, 
-      loading, 
+    {
+      state: { series, currentPage, totalPages, heroImage },
+      loading,
       error,
-    }, 
-    fetchMovies
+    },
+    fetchMovies,
+    fetchTV,
   ] = useHomeFetch();
   const [searchTerm, setSearchTerm] = useState('');
 
-  if (error) return <div>Something Went Wrong ...</div>;
-  if (!movies[0]) return <Spinner />;
-  
+  const searchMovies = search => {
+  const endpoint = search ? SEARCH_BASE_URL + search : TRENDING_TV_URL;
+
+    setSearchTerm(search);
+    fetchMovies(endpoint);
+
+  }
+
+  const loadMoreMovies = () => {
+    const searchEndpoint = `${SEARCH_BASE_URL}${searchTerm}&page=${currentPage + 1}`;
+    const popularEndpoint = `${TRENDING_TV_URL}&page=${currentPage + 1}`;
+
+    const endpoint = searchTerm ? searchEndpoint : popularEndpoint;
+
+    fetchMovies(endpoint);
+
+  }
+
+  if (error) return <div>Something went wrong ...</div>;
+  if (!series[0]) return <Spinner />;
 
   return (
     <>
-      <HeroImage
-        image={`${IMAGE_BASE_URL}${BACKDROP_SIZE}${heroImage.backdrop_path}`}
-        title={heroImage.name}
-        text={heroImage.overview}
-      />
-      <SearchBar />
+    <SearchBar callback={searchMovies} />
+      {!searchTerm && (
+        <HeroImage
+          image={`${IMAGE_BASE_URL}${BACKDROP_SIZE}${heroImage.backdrop_path}`}
+          title={heroImage.original_name}
+          text={heroImage.overview}
+        />
+      )}
       <Grid header={searchTerm ? 'Search Result' : 'Trending TV Shows'}>
-        {movies.map(movie => (
+        {series.map(series => (
           <MovieThumb
-            key={movie.id}
+            key={series.id}
             clickable
             image={
-              movie.poster_path
-                ? `${IMAGE_BASE_URL}${POSTER_SIZE}${movie.poster_path}`
+              series.poster_path
+                ? `${IMAGE_BASE_URL}${POSTER_SIZE}${series.poster_path}`
                 : NoImage
             }
-            movieId={movie.id}
-            movieName={movie.original_title}
+            seriesId={series.id}
+            seriesName={series.original_title}
           />
         ))}
       </Grid>
-      <MovieThumb />
-      <Spinner />
-      <LoadMoreBtn />
+      {loading && <Spinner />}
+      
+      <LoadMoreBtn text="Load More" callback={loadMoreMovies} />
+      
     </>
   );
 };

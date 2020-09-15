@@ -12,6 +12,8 @@ const StyledMovieThumb = styled.div`
 
     :hover {
       opacity: 0.8;
+      box-shadow: 0 4px 2rem -4px #FFFFFF;
+      transform: translateY(-3px);
     }
 
     .clickable {
@@ -31,7 +33,7 @@ const StyledMovieThumb = styled.div`
 
 
 
-const MovieThumb = ({ image, movieId, clickable }) => (
+const MovieThumb = ({ image, seriesId, clickable }) => (
     <StyledMovieThumb>
       {clickable ? (
         <img className="clickable" src={image} alt="moviethumb" />
@@ -41,6 +43,5 @@ const MovieThumb = ({ image, movieId, clickable }) => (
     </StyledMovieThumb>
   )
   
-  export default MovieThumb;
 
 export default MovieThumb;
