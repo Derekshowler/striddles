@@ -4,8 +4,7 @@ import styled from 'styled-components';
 const StyledSearchBar = styled.div`
   width: 100%;
   height: 105px;
-  background: black;
-  padding: 10px 20px 20px 20px;
+  padding: 35px 20px 20px 20px;
   box-sizing: border-box;
   color: #fff;
 `;
@@ -14,7 +13,7 @@ const StyledSearchBarContent = styled.div`
   max-width: 1280px;
   width: 100%;
   height: 55px;
-  background: #353535;
+  background: #393e46;
   margin: 0 auto;
   border-radius: 40px;
   position: relative;

@@ -13,8 +13,10 @@ const StyledHeroImage = styled.div`
     ),
     url('${props.image}'), #1c1c1c`};
   background-size: 100%, cover !important;
-  width: 100%;
-  height: 600px;
+  max-width: 1280px;
+  min-height: 450px;
+  margin: 0 auto;
+  border-radius: 20px;
   position: relative;
   animation: animateHeroimage 1s;
 

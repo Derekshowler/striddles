@@ -22,7 +22,7 @@ export const useHomeFetch = () => {
           isLoadMore !== -1
           ? [...prev.series, ...result.results]
           : [...result.results],
-        heroImage: prev.heroImage || result.results[7],
+        heroImage: prev.heroImage || result.results[9],
         currentPage: result.page,
         totalPages: result.total_pages,
       }));

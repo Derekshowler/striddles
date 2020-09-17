@@ -2,16 +2,16 @@ import React from 'react';
 import styled from 'styled-components';
 
 const StyledLoadMoreBtn = styled.button`
-  background: #FFFFFF;
-  width: 25%;
+  background: #00adb5;
+  width: 15%;
   min-width: 200px;
   height: 70px;
-  color: #000;
+  color: #eeeeee;
   cursor: pointer;
   transition: all 0.3s;
   border-radius: 40px;
-  font-family: 'Abel', sans-serif;
-  font-size: 28px;
+  font-family: 'Caveat', cursive;
+  font-size: 30px;
   max-width: 1280px;
   display: block;
   margin: 20px auto;
@@ -20,6 +20,8 @@ const StyledLoadMoreBtn = styled.button`
 
   :hover {
     opacity: 0.8;
+    box-shadow: 0 4px 2rem -4px #FFFFFF;
+    transform: translateY(-2px);
   }
 `;
 

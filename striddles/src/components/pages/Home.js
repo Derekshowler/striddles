@@ -56,7 +56,6 @@ const Home = () => {
 
   return (
     <>
-    <SearchBar callback={searchMovies} />
       {!searchTerm && (
         <HeroImage
           image={`${IMAGE_BASE_URL}${BACKDROP_SIZE}${heroImage.backdrop_path}`}
@@ -64,6 +63,7 @@ const Home = () => {
           text={heroImage.overview}
         />
       )}
+      <SearchBar callback={searchMovies} />
       <Grid header={searchTerm ? 'Search Result' : 'Trending TV Shows'}>
         {series.map(series => (
           <MovieThumb
@@ -80,9 +80,9 @@ const Home = () => {
         ))}
       </Grid>
       {loading && <Spinner />}
-      
-      <LoadMoreBtn text="Load More" callback={loadMoreMovies} />
-      
+      {currentPage < totalPages && !loading && (
+        <LoadMoreBtn text="Load More" callback={loadMoreMovies} />
+      )}
     </>
   );
 };
