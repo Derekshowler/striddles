@@ -21,10 +21,17 @@ export const useHomeFetch = () => {
         series: 
           isLoadMore !== -1
           ? [...prev.series, ...result.results]
-          : [...result.results],
-        heroImage: prev.heroImage || result.results[9],
+          : [...result.results.slice(0, 18)],
+        movies: 
+          isLoadMore !== -1
+          ? [...prev.movies, ...result.results]
+          : [...result.results.slice(0, 18)],
+        heroImage: prev.heroImage || result.results[Math.floor(Math.random()*result.results.length)],
+        voteAverage: result.vote_average,
         currentPage: result.page,
         totalPages: result.total_pages,
+        originalName: result.original_name,
+        originalTitle: result.original_title
       }));
 
     } catch (error) {

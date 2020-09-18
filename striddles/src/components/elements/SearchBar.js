@@ -10,10 +10,11 @@ const StyledSearchBar = styled.div`
 `;
 
 const StyledSearchBarContent = styled.div`
-  max-width: 1280px;
+  max-width: 480px;
   width: 100%;
   height: 55px;
-  background: #393e46;
+  border: 4px solid #00adb5;
+  background: #eeeeee;
   margin: 0 auto;
   border-radius: 40px;
   position: relative;
@@ -23,12 +24,13 @@ const StyledSearchBarContent = styled.div`
     position: absolute;
     left: 20px;
     top: 12px;
-    color: #fff;
+    color: #eeeeee;
     z-index: 1000;
   }
 
   input {
-    font-family: 'Abel', sans-serif;
+    font-family: 'Caveat', cursive;
+    text-align: center;
     font-size: 28px;
     position: absolute;
     left: 0px;
@@ -37,8 +39,8 @@ const StyledSearchBarContent = styled.div`
     border: 0;
     width: 95%;
     background: transparent;
-    height: 40px;
-    color: #fff;
+    height: 30px;
+    color: #00adb5;
     box-sizing: border-box;
 
     :focus {

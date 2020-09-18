@@ -7,7 +7,7 @@ const StyledGrid = styled.div`
   padding: 0 20px;
   h1 {
     font-family: 'Caveat', cursive;
-    color: white;
+    color: #eeeeee;
     padding: 20px;
     font-size: 37px;
 
@@ -19,8 +19,8 @@ const StyledGrid = styled.div`
 
 const StyledGridContent = styled.div`
   display: grid;
-  grid-template-columns: repeat(5, minmax(100px, 1fr));
-  grid-gap: 40px;
+  grid-template-columns: repeat(6, minmax(100px, 1fr));
+  grid-gap: 20px;
   position: relative;
 
   @media screen and (max-width: 1024px) {
