@@ -2,36 +2,29 @@ import { useState, useEffect } from 'react';
 import { TRENDING_TV_URL } from '../../config';
 
 export const useHomeFetch = () => {
-  const [state, setState] = useState({ series: [] });
+  const [state, setState] = useState({ cardData: [] });
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
 
   console.log(state);
 
-  const fetchTV = async (endpoint) => {
+  const fetchAPITrendingSeriesData = async (endpoint) => {
     setError(false);
     setLoading(true);
 
     const isLoadMore = endpoint.search('page');
 
     try {
-      const result = await (await fetch(endpoint)).json();
-      setState((prev) => ({
-        ...prev,
-        series: 
+      const API_Result = await (await fetch(endpoint)).json();
+      setState((previous_State) => ({
+        ...previous_State,
+        cardData: 
           isLoadMore !== -1
-          ? [...prev.series, ...result.results]
-          : [...result.results.slice(0, 18)],
-        movies: 
-          isLoadMore !== -1
-          ? [...prev.movies, ...result.results]
-          : [...result.results.slice(0, 18)],
-        heroImage: prev.heroImage || result.results[Math.floor(Math.random()*result.results.length)],
-        voteAverage: result.vote_average,
-        currentPage: result.page,
-        totalPages: result.total_pages,
-        originalName: result.original_name,
-        originalTitle: result.original_title
+          ? [...previous_State.cardData, ...API_Result.results]
+          : [...API_Result.results.slice(0, 18)],
+        heroImage: previous_State.heroImage || API_Result.results[Math.floor(Math.random()*API_Result.results.length)],
+        currentPage: API_Result.page,
+        totalPages: API_Result.total_pages,
       }));
 
     } catch (error) {
@@ -42,9 +35,9 @@ export const useHomeFetch = () => {
   };
 
   useEffect(() => {
-    fetchTV(TRENDING_TV_URL);
+    fetchAPITrendingSeriesData(TRENDING_TV_URL);
   }, [])
 
-  return [{ state, loading, error}, fetchTV];
+  return [{ state, loading, error}, fetchAPITrendingSeriesData];
 }
 

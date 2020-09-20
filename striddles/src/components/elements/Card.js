@@ -1,4 +1,5 @@
 import React from 'react';
+import {Link} from 'react-router-dom';
 import styled from 'styled-components';
 
 const StyledCard = styled.div`
@@ -49,13 +50,15 @@ const StyledCard = styled.div`
   }
 `;
 
-const Card = ({ image, seriesId, clickable, originalName, originalTitle, voteAverage }) => (
+const Card = ({ image, cardPageDataID, clickable, originalName, name, originalTitle, voteAverage }) => (
     <StyledCard>
       {clickable ? (
-        <img className="clickable" src={image} alt="card" />
-      ) : (
-        <img src={image} alt="card" />
-      )}
+        <Link to = {`/${cardPageDataID}`}>
+          <img className="clickable" src={image} alt="card" />
+        </Link>
+        ) : (
+          <img src={image} alt="card" />
+        )}
       <div className = "card-content">
       <span className = "name">{originalName} {originalTitle}</span>
         <br></br>

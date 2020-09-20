@@ -24,6 +24,7 @@ const StyledHeroImage = styled.div`
     max-width: 1280px;
     padding: 20px;
     margin: 0 auto;
+    color: #FFFFFF;
   }
 
   .heroimage-text {
@@ -75,11 +76,11 @@ const StyledHeroImage = styled.div`
   }
 `;
 
-const HeroImage = ({ image, title, text }) => (
+const HeroImage = ({ image, title, name, originalName, originalTitle, text }) => (
   <StyledHeroImage image={image}>
     <div className="heroimage-content">
       <div className="heroimage-text">
-        <h1>{title}</h1>
+        <h1 className = "name">{originalName} {originalTitle}</h1>
         <p>{text}</p>
       </div>
     </div>

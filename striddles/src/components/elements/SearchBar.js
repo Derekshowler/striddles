@@ -4,8 +4,6 @@ import styled from 'styled-components';
 const StyledSearchBar = styled.div`
   width: 100%;
   height: 105px;
-  padding: 35px 20px 20px 20px;
-  box-sizing: border-box;
   color: #fff;
 `;
 

@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
 
 const StyledGrid = styled.div`
   max-width: 1280px;
@@ -48,5 +49,9 @@ const Grid = ({ header, children }) => (
         <StyledGridContent>{children}</StyledGridContent>
     </StyledGrid>
 )
+
+Grid.propTypes = {
+  header: PropTypes.string,
+}
 
 export default Grid;
