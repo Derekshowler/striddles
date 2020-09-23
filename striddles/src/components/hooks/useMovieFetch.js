@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { TRENDING_MOVIE_URL, TRENDING_TV_URL } from '../../config';
+import { TRENDING_MOVIE_URL } from '../../config';
 
 export const useMovieFetch = () => {
   const [stateMovies, setStateMovies] = useState({ cardMovieData: [] });
@@ -21,7 +21,8 @@ export const useMovieFetch = () => {
         cardMovieData: 
           isLoadMore !== -1
           ? [...previous_StateMovie.cardMovieData, ...API_Movie_Result.results]
-          : [...API_Movie_Result.results.slice(0, 18)],
+          : [...API_Movie_Result.results.slice(0, 14)],
+        heroImage: previous_StateMovie.heroImage || API_Movie_Result.results[Math.floor(Math.random()*API_Movie_Result.results.length)],
         currentPageMovies: API_Movie_Result.page,
         totalPagesMovies: API_Movie_Result.total_pages,
       }));

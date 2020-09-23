@@ -1,14 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import NoImage from '../assets/images/no_image.jpg';
 import { IMAGE_BASE_URL, POSTER_SIZE, BACKDROP_SIZE } from '../../config';
 
 import Card from './Card';
-
+import NoImage from "../../components/assets/images/no_image.jpg";
 import styled from 'styled-components';
 
-const StyledInfo = styled.div`
+const StyledContentInfo = styled.div`
   background: ${props =>
     props.backdrop
       ? `url('${IMAGE_BASE_URL}${BACKDROP_SIZE}${props.backdrop}')`
@@ -20,7 +19,7 @@ const StyledInfo = styled.div`
   box-sizing: border-box;
   animation: animateMovieinfo 1s;
 
-  .info-content {
+  .contentinfo-content {
     max-width: 1280px;
     min-height: 450px;
     margin: 0 auto;
@@ -29,7 +28,7 @@ const StyledInfo = styled.div`
     position: relative;
   }
 
-  .info-card {
+  .contentinfo-card {
     width: 300px;
     float: left;
 
@@ -38,7 +37,7 @@ const StyledInfo = styled.div`
     }
   }
 
-  .info-text {
+  .contentinfo-text {
     font-family: Arial, Helvetica, sans-serif;
     padding: 40px;
     color: #fff;
@@ -109,40 +108,39 @@ const StyledInfo = styled.div`
 `;
 
 
-const Info = ({ data }) => (
-  <StyledInfo backdrop={data.backdrop_path}>
-    <div className="info-content">
-      <div className="info-card">
+const ContentInfo = ({ state }) => (
+  <StyledContentInfo backdrop={state.backdrop_path}>
+    <div className="contentinfo-content">
+      <div className="contentinfo-card">
         <Card
           image={
-            data.poster_path
-              ? `${IMAGE_BASE_URL}${POSTER_SIZE}${data.poster_path}`
+            state.poster_path
+              ? `${IMAGE_BASE_URL}${POSTER_SIZE}${state.poster_path}`
               : NoImage
           }
           clickable={false}
-          alt="card"
+          alt="cardthumb"
         />
       </div>
-      <div className="info-text">
-        <h1>{data.title}</h1>
+      <div className="contentinfo-text">
+        <h1>{state.title}</h1>
         <h3>PLOT</h3>
-        <p>{data.overview}</p>
+        <p>{state.overview}</p>
      
         <div className="rating-director">
           <div>
-            <h3>RATING</h3>
-            <div className="score">{data.vote_average}</div>
-          </div>
-          <div className="director">
-            <h3>DIRECTOR{data.directors.length > 1 ? 'S' : ''}</h3>
-            {data.directors.map(element => (
-              <p key={element.credit_id}>{element.name}</p>
-            ))}
+            <h3>IMDB RATING</h3>
+            <div className="score">{state.vote_average}</div>
           </div>
         </div>
       </div>
     </div>
-  </StyledInfo>
+  </StyledContentInfo>
 );
 
-export default Info;
+ContentInfo.propTypes = {
+  state: PropTypes.object,
+  directors: PropTypes.array,
+}
+
+export default ContentInfo;

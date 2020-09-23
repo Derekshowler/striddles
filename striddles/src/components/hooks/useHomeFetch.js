@@ -21,7 +21,7 @@ export const useHomeFetch = () => {
         cardData: 
           isLoadMore !== -1
           ? [...previous_State.cardData, ...API_Result.results]
-          : [...API_Result.results.slice(0, 18)],
+          : [...API_Result.results.slice(0, 14)],
         heroImage: previous_State.heroImage || API_Result.results[Math.floor(Math.random()*API_Result.results.length)],
         currentPage: API_Result.page,
         totalPages: API_Result.total_pages,

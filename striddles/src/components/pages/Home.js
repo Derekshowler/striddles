@@ -100,7 +100,7 @@ const Home = () => {
                 : NoImage
             }
             voteAverage={dataId.vote_average}
-            nameId={dataId.name}
+            fetchContentId={dataId.name}
             originalName={dataId.name}
             originalTitle={dataId.title}
           />
@@ -123,7 +123,7 @@ const Home = () => {
                   : NoImage
               }
               voteAverage={movieId.vote_average}
-              nameId={movieId.name}
+              fetchContentId={movieId.id}
               originalName={movieId.name}
               originalTitle={movieId.title}
             />
@@ -131,8 +131,8 @@ const Home = () => {
         </Grid>
       )}
       {loadingMovies && <Spinner />}
-      {currentPageMovies < totalPagesMovies && !loadingMovies && (
-        <LoadMoreBtn text="Load More" callback={LoadMoreMovies} />
+      {currentPageMovies < totalPagesMovies && !loadingMovies && !searchTerm && (
+      <LoadMoreBtn text="Load More" callback={LoadMoreMovies} />
       )}
     </>
   );

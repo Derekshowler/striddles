@@ -1,5 +1,9 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
+//import {Link} from 'react-router-dom';
+import { Router, Link } from '@reach/router';
+
+
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 const StyledCard = styled.div`
@@ -50,10 +54,11 @@ const StyledCard = styled.div`
   }
 `;
 
-const Card = ({ image, cardPageDataID, clickable, originalName, name, originalTitle, voteAverage }) => (
+//contentId comes from the grid setup on homepage where we initially grab the items
+const Card = ({ image, fetchContentId, contentId, clickable, originalName, name, originalTitle, voteAverage }) => (
     <StyledCard>
       {clickable ? (
-        <Link to = {`/${cardPageDataID}`}>
+        <Link to = {`/${fetchContentId}`}>
           <img className="clickable" src={image} alt="card" />
         </Link>
         ) : (
@@ -66,6 +71,12 @@ const Card = ({ image, cardPageDataID, clickable, originalName, name, originalTi
       </div>
     </StyledCard>
   )
+
+Card.propTypes = {
+  image: PropTypes.string,
+  fetchContentId: PropTypes.string,
+  clickable: PropTypes.bool,
+}
   
 
 export default Card;
