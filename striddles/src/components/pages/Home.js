@@ -25,7 +25,7 @@ const Home = () => {
   //API Fetch for Series and Search + Load More
   const [
     {
-      state: { cardData, currentPage, totalPages, heroImage },
+      state: { TV_Data, currentPage, totalPages },
       loading,
       error,
     },
@@ -54,7 +54,7 @@ const Home = () => {
   //API Fetch for Movies + Load More
   const [
     {
-      stateMovies: { cardMovieData, currentPageMovies, totalPagesMovies },
+      stateMovies: { Movie_Data, heroImage, currentPageMovies, totalPagesMovies },
       loadingMovies,
       errorMovies,
     },
@@ -72,8 +72,8 @@ const Home = () => {
   //Make sure we have data and no errors
   if (error) return <div>Something went wrong with Series...</div>;
   if (errorMovies) return <div>Something went wrong with Movies...</div>;
-  if (!cardData[0]) return <Spinner />;
-  if (!cardMovieData[0]) return <Spinner />;
+  if (!TV_Data[0]) return <Spinner />;
+  if (!Movie_Data[0]) return <Spinner />;
 
   //Render Page Components
   return (
@@ -90,7 +90,7 @@ const Home = () => {
         />
       )}
       <Grid header={searchTerm ? "Search Result" : "Trending TV Shows"}>
-        {cardData.map((dataId) => (
+        {TV_Data.map((dataId) => (
           <Card
             key={dataId.id}
             clickable
@@ -100,9 +100,7 @@ const Home = () => {
                 : NoImage
             }
             voteAverage={dataId.vote_average}
-            fetchContentId={dataId.name}
-            originalName={dataId.name}
-            originalTitle={dataId.title}
+            fetchContentId={encodeURIComponent(dataId.media_type + "/" + dataId.id)}
           />
         ))}
       </Grid>
@@ -113,7 +111,7 @@ const Home = () => {
 
       {!searchTerm && (
         <Grid header="Trending Movies">
-          {cardMovieData.map((movieId) => (
+          {Movie_Data.map((movieId) => (
             <Card
               key={movieId.id}
               clickable
@@ -123,9 +121,11 @@ const Home = () => {
                   : NoImage
               }
               voteAverage={movieId.vote_average}
-              fetchContentId={movieId.id}
+              fetchContentId={encodeURIComponent(movieId.media_type + "/" + movieId.id)}
+              fetchContentName={movieId.name}
               originalName={movieId.name}
               originalTitle={movieId.title}
+              fetchMediaType = {movieId.media_type}
             />
           ))}
         </Grid>

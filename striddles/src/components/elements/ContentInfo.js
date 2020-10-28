@@ -138,9 +138,6 @@ const ContentInfo = ({ state }) => (
   </StyledContentInfo>
 );
 
-ContentInfo.propTypes = {
-  state: PropTypes.object,
-  directors: PropTypes.array,
-}
+
 
 export default ContentInfo;

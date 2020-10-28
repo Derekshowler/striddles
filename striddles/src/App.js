@@ -10,15 +10,17 @@ import Register from './components/pages/Register';
 
 import NotFound from './components/pages/NotFound';
 import ContentPage from './components/pages/ContentPage';
-
+import MediaType from './components/pages/MediaType';
 
 const App = () => (
   <>
     <Navbar></Navbar>
     <Router>
       <Home path = "/"></Home>
-      <ContentPage path= "/:fetchContentId"/>
+        <ContentPage path= "/:fetchContentId"/>
       <NotFound default></NotFound>
+      <Login path = "/login"></Login>
+      <Register path = "/register"></Register>
     </Router>
     <GlobalStyle></GlobalStyle>
   </>

@@ -11,15 +11,15 @@ export const useContentFetch = fetchContentId => {
     setLoading(true);
 
     try {
-      const endpoint = `${API_URL}/search/multi/${fetchContentId}?api_key=${API_KEY}`;
+      const endpoint = `${API_URL}${decodeURIComponent(fetchContentId)}?api_key=${API_KEY}`;
+      console.log(endpoint);
       const result = await (await fetch(endpoint)).json();
       console.log(result);
-      const creditsEndpoint = `${API_URL}/search/multi/${fetchContentId}/credits?api_key=${API_KEY}`;
+      const creditsEndpoint = `${API_URL}${decodeURIComponent(fetchContentId)}/credits?api_key=${API_KEY}`;
       const creditsResult = await (await fetch(creditsEndpoint)).json();
       const directors = creditsResult.crew.filter(
         member => member.job === 'Director'
       );
-      console.log(creditsResult);
 
       setState({
         ...result,

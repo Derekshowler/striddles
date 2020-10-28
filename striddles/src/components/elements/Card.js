@@ -55,10 +55,10 @@ const StyledCard = styled.div`
 `;
 
 //contentId comes from the grid setup on homepage where we initially grab the items
-const Card = ({ image, fetchContentId, contentId, clickable, originalName, name, originalTitle, voteAverage }) => (
+const Card = ({ image, fetchContentId, mediaType, contentId, clickable, originalName, name, originalTitle, voteAverage }) => (
     <StyledCard>
       {clickable ? (
-        <Link to = {`/${fetchContentId}`}>
+        <Link to = {`${fetchContentId}`}>
           <img className="clickable" src={image} alt="card" />
         </Link>
         ) : (
