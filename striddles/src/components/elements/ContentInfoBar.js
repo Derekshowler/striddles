@@ -58,12 +58,12 @@ const StyledContentInfoBar = styled.div`
 `;
 
 
-const ContentInfoBar = ({ time, budget, revenue }) => (
+const ContentInfoBar = ({ time, budget, genres }) => (
     <StyledContentInfoBar>
       <div className="contentinfobar-content">
         <div className="contentinfobar-content-col">
           <span className="contentinfobar-info">
-            Running time: {calcTime(time)}
+            Length: {calcTime(time)}
           </span>
         </div>
   
@@ -75,7 +75,7 @@ const ContentInfoBar = ({ time, budget, revenue }) => (
   
         <div className="contentinfobar-content-col">
           <span className="contentinfobar-info">
-            Revenue: {convertMoney(revenue)}
+            Genres: {genres}
           </span>
         </div>
       </div>

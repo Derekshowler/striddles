@@ -1,10 +1,10 @@
-import React from 'react';
-import styled from 'styled-components';
-
+import React from "react";
+import styled from "styled-components";
+import { Router, Link } from "@reach/router";
 
 //background-position: center, center !important;
 const StyledHeroImage = styled.div`
-  background: ${props =>
+  background: ${(props) =>
     `linear-gradient(
       to bottom, rgba(0,0,0,0)
       39%,rgba(0,0,0,0)
@@ -19,12 +19,13 @@ const StyledHeroImage = styled.div`
   border-radius: 20px;
   position: relative;
   animation: animateHeroimage 1s;
+  cursor: pointer;
 
   .heroimage-content {
     max-width: 1280px;
     padding: 20px;
     margin: 0 auto;
-    color: #FFFFFF;
+    color: #ffffff;
   }
 
   .heroimage-text {
@@ -38,7 +39,7 @@ const StyledHeroImage = styled.div`
     color: #fff;
 
     h1 {
-      font-family: 'Caveat', cursive;
+      font-family: "Caveat", cursive;
       font-size: 42px;
       color: #fff;
 
@@ -49,7 +50,7 @@ const StyledHeroImage = styled.div`
     }
 
     p {
-      font-family: 'Abel', sans-serif;
+      font-family: "Abel", sans-serif;
       font-size: 22px;
       line-height: 26px;
       color: #fff;
@@ -76,15 +77,25 @@ const StyledHeroImage = styled.div`
   }
 `;
 
-const HeroImage = ({ image, title, name, originalName, originalTitle, text }) => (
-  <StyledHeroImage image={image}>
-    <div className="heroimage-content">
-      <div className="heroimage-text">
-        <h1 className = "name">{originalName} {originalTitle}</h1>
-        <p>{text}</p>
+const HeroImage = ({
+  image,
+  fetchContentId,
+  originalName,
+  originalTitle,
+  text,
+}) => (
+  <Link to = {`${fetchContentId}`} >
+    <StyledHeroImage image={image}>
+      <div className="heroimage-content">
+        <div className="heroimage-text">
+          <h1 className="name">
+            {originalName} {originalTitle}
+          </h1>
+          <p>{text}</p>
+        </div>
       </div>
-    </div>
-  </StyledHeroImage>
-)
+    </StyledHeroImage>
+  </Link>
+);
 
 export default HeroImage;

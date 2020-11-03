@@ -54,7 +54,12 @@ const Home = () => {
   //API Fetch for Movies + Load More
   const [
     {
-      stateMovies: { Movie_Data, heroImage, currentPageMovies, totalPagesMovies },
+      stateMovies: {
+        Movie_Data,
+        heroImage,
+        currentPageMovies,
+        totalPagesMovies,
+      },
       loadingMovies,
       errorMovies,
     },
@@ -82,14 +87,18 @@ const Home = () => {
       {!searchTerm && (
         <HeroImage
           image={`${IMAGE_BASE_URL}${BACKDROP_SIZE}${heroImage.backdrop_path}`}
+          clickable
           nameId={heroImage.name}
+          fetchContentId={encodeURIComponent(
+            heroImage.media_type + "/" + heroImage.id
+          )}
           originalName={heroImage.name}
           originalTitle={heroImage.title}
           title={heroImage.original_name}
           text={heroImage.overview}
         />
       )}
-      <Grid header={searchTerm ? "Search Result" : "Trending TV Shows"}>
+      <Grid header={searchTerm ? "Search Result" : "Trending TV"}>
         {TV_Data.map((dataId) => (
           <Card
             key={dataId.id}
@@ -100,7 +109,10 @@ const Home = () => {
                 : NoImage
             }
             voteAverage={dataId.vote_average}
-            fetchContentId={encodeURIComponent(dataId.media_type + "/" + dataId.id)}
+            fetchContentId={encodeURIComponent(
+              dataId.media_type + "/" + dataId.id
+            )}
+            name={dataId.name}
           />
         ))}
       </Grid>
@@ -121,19 +133,23 @@ const Home = () => {
                   : NoImage
               }
               voteAverage={movieId.vote_average}
-              fetchContentId={encodeURIComponent(movieId.media_type + "/" + movieId.id)}
+              fetchContentId={encodeURIComponent(
+                movieId.media_type + "/" + movieId.id
+              )}
               fetchContentName={movieId.name}
               originalName={movieId.name}
               originalTitle={movieId.title}
-              fetchMediaType = {movieId.media_type}
+              fetchMediaType={movieId.media_type}
             />
           ))}
         </Grid>
       )}
       {loadingMovies && <Spinner />}
-      {currentPageMovies < totalPagesMovies && !loadingMovies && !searchTerm && (
-      <LoadMoreBtn text="Load More" callback={LoadMoreMovies} />
-      )}
+      {currentPageMovies < totalPagesMovies &&
+        !loadingMovies &&
+        !searchTerm && (
+          <LoadMoreBtn text="Load More" callback={LoadMoreMovies} />
+        )}
     </>
   );
 };

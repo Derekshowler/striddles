@@ -1,17 +1,17 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React from "react";
+import PropTypes from "prop-types";
 
-import { IMAGE_BASE_URL, POSTER_SIZE, BACKDROP_SIZE } from '../../config';
+import { IMAGE_BASE_URL, POSTER_SIZE, BACKDROP_SIZE } from "../../config";
 
-import Card from './Card';
+import Card from "./Card";
 import NoImage from "../../components/assets/images/no_image.jpg";
-import styled from 'styled-components';
+import styled from "styled-components";
 
 const StyledContentInfo = styled.div`
-  background: ${props =>
+  background: ${(props) =>
     props.backdrop
       ? `url('${IMAGE_BASE_URL}${BACKDROP_SIZE}${props.backdrop}')`
-      : '#000'};
+      : "#000"};
   background-size: cover !important;
   background-position: center !important;
   width: 100%;
@@ -44,7 +44,7 @@ const StyledContentInfo = styled.div`
     overflow: hidden;
 
     h1 {
-      font-family: 'Abel', sans-serif;
+      font-family: "Abel", sans-serif;
       font-size: 48px;
       margin: 0;
 
@@ -60,9 +60,10 @@ const StyledContentInfo = styled.div`
     }
 
     p {
-      font-family: 'Abel', sans-serif;
+      font-family: "Abel", sans-serif;
       font-size: 18px;
       line-height: 26px;
+      margin: 15px 0 0 0;
     }
   }
 
@@ -81,7 +82,7 @@ const StyledContentInfo = styled.div`
     color: #000;
     font-weight: 800;
     border-radius: 25px;
-    margin: 0px 0 0 0;
+    margin: 15px 0 0 0;
   }
 
   .director {
@@ -107,6 +108,22 @@ const StyledContentInfo = styled.div`
   }
 `;
 
+const StyledContentInfoCard = styled.div`
+  flex: 1 0 250px;
+  box-shadow: 0 1px 1rem -4px #000;
+  margin: 1rem;
+  overflow: hidden;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 250ms ease-in-out;
+
+  :hover {
+    opacity: 0.8;
+    box-shadow: 0 4px 2rem -4px #ffffff;
+    transform: translateY(-3px);
+  }
+`;
+
 
 const ContentInfo = ({ state }) => (
   <StyledContentInfo backdrop={state.backdrop_path}>
@@ -126,10 +143,10 @@ const ContentInfo = ({ state }) => (
         <h1>{state.title}</h1>
         <h3>PLOT</h3>
         <p>{state.overview}</p>
-     
+
         <div className="rating-director">
           <div>
-            <h3>IMDB RATING</h3>
+            <h3>RATING</h3>
             <div className="score">{state.vote_average}</div>
           </div>
         </div>
@@ -137,7 +154,5 @@ const ContentInfo = ({ state }) => (
     </div>
   </StyledContentInfo>
 );
-
-
 
 export default ContentInfo;
