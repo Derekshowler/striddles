@@ -6,10 +6,17 @@ import styled from 'styled-components';
 const StyledNavigation = styled.div`
   display: flex;
   align-items: center;
-  width: 100%;
+  max-width: 1280px;
   height: 70px;
-  background: #353535;
-  color: #fff;
+  background: rgb(10, 10, 10, 0);
+  color: #056676;
+  margin: 0 auto;
+  border-radius: 20px;
+  position: relative;
+  
+  .HomeUnderline {
+        text-decoration: underline;
+      }
 
   .navigation-content {
     max-width: 1280px;
@@ -21,9 +28,8 @@ const StyledNavigation = styled.div`
       font-family: 'Abel', sans-serif;
       font-size: 22px;
       float: left;
-      color: #fff;
+      color: #e8ded2;
       padding-right: 10px;
-      text-decoration: none;
 
       @media screen and (max-width: 768px) {
         font-size: 16px;
@@ -36,7 +42,7 @@ const ContentNav = ({ dataId }) => (
   <StyledNavigation>
     <div className="navigation-content">
       <Link to="/">
-        <p>Home</p>
+        <p className = 'HomeUnderline'>Home</p>
       </Link>
       <p>|</p>
       <p>{dataId}</p>

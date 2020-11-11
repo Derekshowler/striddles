@@ -83,7 +83,6 @@ const Home = () => {
   //Render Page Components
   return (
     <>
-      <SearchBar callback={searchMovies} />
       {!searchTerm && (
         <HeroImage
           image={`${IMAGE_BASE_URL}${BACKDROP_SIZE}${heroImage.backdrop_path}`}
@@ -98,7 +97,8 @@ const Home = () => {
           text={heroImage.overview}
         />
       )}
-      <Grid header={searchTerm ? "Search Result" : "Trending TV"}>
+      {!searchTerm && (
+      <Grid header={"Trending TV"}>
         {TV_Data.map((dataId) => (
           <Card
             key={dataId.id}
@@ -116,6 +116,7 @@ const Home = () => {
           />
         ))}
       </Grid>
+      )}
       {loading && <Spinner />}
       {currentPage < totalPages && !loading && (
         <LoadMoreBtn text="Load More" callback={loadMoreSeries} />

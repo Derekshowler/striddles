@@ -22,7 +22,6 @@ const ContentPage = ({ fetchContentId }) => {
 
   return (
     <div>
-      <ContentNav dataId={state.name || state.title}></ContentNav>
       <ContentInfo state={state} />
       <ContentInfoBar
         time={state.runtime || state.episode_run_time}

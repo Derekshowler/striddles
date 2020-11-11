@@ -3,7 +3,6 @@ import styled from 'styled-components';
 
 const StyledSearchBar = styled.div`
   width: 100%;
-  height: 105px;
   color: #fff;
 `;
 
@@ -11,7 +10,7 @@ const StyledSearchBarContent = styled.div`
   max-width: 480px;
   width: 100%;
   height: 55px;
-  border: 4px solid #00adb5;
+  border: 4px solid #056676;
   background: #eeeeee;
   margin: 0 auto;
   border-radius: 40px;
@@ -38,7 +37,7 @@ const StyledSearchBarContent = styled.div`
     width: 95%;
     background: transparent;
     height: 30px;
-    color: #00adb5;
+    color: #056676;
     box-sizing: border-box;
 
     :focus {

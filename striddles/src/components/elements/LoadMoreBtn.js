@@ -2,11 +2,11 @@ import React from 'react';
 import styled from 'styled-components';
 
 const StyledLoadMoreBtn = styled.button`
-  background: #00adb5;
+  background: #056676;
   width: 15%;
   min-width: 200px;
   height: 70px;
-  color: #eeeeee;
+  color: #e8ded2;
   cursor: pointer;
   transition: all 0.3s;
   border-radius: 40px;

@@ -6,22 +6,29 @@ import { IMAGE_BASE_URL, POSTER_SIZE, BACKDROP_SIZE } from "../../config";
 import Card from "./Card";
 import NoImage from "../../components/assets/images/no_image.jpg";
 import styled from "styled-components";
+import ContentNav from "../../components/navigation/ContentNav";
 
 const StyledContentInfo = styled.div`
   background: ${(props) =>
     props.backdrop
       ? `url('${IMAGE_BASE_URL}${BACKDROP_SIZE}${props.backdrop}')`
-      : "#000"};
+      : "#056676"};
   background-size: cover !important;
   background-position: center !important;
   width: 100%;
   padding: 40px 20px;
   box-sizing: border-box;
   animation: animateMovieinfo 1s;
-
+  max-width: 1280px;
+  min-height: 450px;
+  margin: 0 auto;
+  border-radius: 20px;
+  position: relative;
+  
+ 
   .contentinfo-content {
     max-width: 1280px;
-    min-height: 450px;
+    min-height: 550px;
     margin: 0 auto;
     background: rgb(0, 0, 0, 0.7);
     border-radius: 20px;
@@ -126,8 +133,10 @@ const StyledContentInfoCard = styled.div`
 
 
 const ContentInfo = ({ state }) => (
-  <StyledContentInfo backdrop={state.backdrop_path}>
+  <>
+  <StyledContentInfo backdrop={state.backdrop_path}>   
     <div className="contentinfo-content">
+    <ContentNav dataId={state.name || state.title}></ContentNav>
       <div className="contentinfo-card">
         <Card
           image={
@@ -140,7 +149,7 @@ const ContentInfo = ({ state }) => (
         />
       </div>
       <div className="contentinfo-text">
-        <h1>{state.title}</h1>
+        <h1>{state.title || state.name}</h1>
         <h3>PLOT</h3>
         <p>{state.overview}</p>
 
@@ -153,6 +162,7 @@ const ContentInfo = ({ state }) => (
       </div>
     </div>
   </StyledContentInfo>
+  </>
 );
 
 export default ContentInfo;
