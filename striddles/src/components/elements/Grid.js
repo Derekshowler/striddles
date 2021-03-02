@@ -20,7 +20,7 @@ const StyledGrid = styled.div`
 
 const StyledGridContent = styled.div`
   display: grid;
-  grid-template-columns: repeat(7, minmax(100px, 1fr));
+  grid-template-columns: repeat(5, minmax(100px, 1fr));
   grid-gap: 20px;
   position: relative;
 

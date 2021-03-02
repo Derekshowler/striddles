@@ -19,7 +19,7 @@ export const useMovieFetch = () => {
         Movie_Data:
           isLoadMore !== -1
             ? [...previous_StateMovie.Movie_Data, ...API_Movie_Result.results]
-            : [...API_Movie_Result.results.slice(0, 14)],
+            : [...API_Movie_Result.results.slice(0, 20)],
         heroImage:
           previous_StateMovie.heroImage ||
           API_Movie_Result.results[
@@ -31,7 +31,7 @@ export const useMovieFetch = () => {
     } catch (errorMovies) {
       setErrorMovies(true);
       console.log(errorMovies);
-    }
+    } 
     setLoadingMovies(false);
   };
   console.log(stateMovies);

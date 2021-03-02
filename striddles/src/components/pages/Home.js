@@ -25,7 +25,7 @@ const Home = () => {
   //API Fetch for Series and Search + Load More
   const [
     {
-      state: { TV_Data, currentPage, totalPages },
+      state: { TV_Data, currentPage, totalPages, },
       loading,
       error,
     },

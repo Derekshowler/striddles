@@ -3,9 +3,9 @@ import styled from 'styled-components';
 
 const StyledLoadMoreBtn = styled.button`
   background: #056676;
-  width: 15%;
-  min-width: 200px;
-  height: 70px;
+  width: 12%;
+  min-width: 100px;
+  height: 40px;
   color: #e8ded2;
   cursor: pointer;
   transition: all 0.3s;

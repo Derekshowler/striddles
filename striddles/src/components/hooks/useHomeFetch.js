@@ -19,7 +19,7 @@ export const useHomeFetch = () => {
         TV_Data:
           isLoadMore !== -1
             ? [...previous_State.TV_Data, ...API_Result.results]
-            : [...API_Result.results.slice(0, 14)],
+            : [...API_Result.results.slice(0, 20)],
         heroImage:
           previous_State.heroImage ||
           API_Result.results[
