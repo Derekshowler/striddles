@@ -31,6 +31,10 @@ const Home = () => {
     },
     fetchAPITrendingSeriesData,
   ] = useHomeFetch();
+  
+  
+
+  
   const [searchTerm, setSearchTerm] = useState("");
 
   const searchMovies = (search) => {
@@ -40,6 +44,12 @@ const Home = () => {
     fetchAPITrendingSeriesData(endpoint);
   };
 
+  
+  
+  
+  
+  
+  
   const loadMoreSeries = () => {
     const searchEndpoint = `${SEARCH_BASE_URL}${searchTerm}&page=${
       currentPage + 1
@@ -98,6 +108,9 @@ const Home = () => {
         />
       )}
       {!searchTerm && (
+      
+      
+      
       <Grid header={"Trending TV"}>
         {TV_Data.map((dataId) => (
           <Card
@@ -115,11 +128,11 @@ const Home = () => {
             name={dataId.name}
           />
         ))}
+        {loading && <Spinner />}
+        {currentPage < totalPages && !loading && (
+          <LoadMoreBtn text="Load More" callback={loadMoreSeries} />
+        )}
       </Grid>
-      )}
-      {loading && <Spinner />}
-      {currentPage < totalPages && !loading && (
-        <LoadMoreBtn text="Load More" callback={loadMoreSeries} />
       )}
 
       {!searchTerm && (
@@ -143,14 +156,12 @@ const Home = () => {
               fetchMediaType={movieId.media_type}
             />
           ))}
+          {loadingMovies && <Spinner />}
+          {currentPage < totalPages && !loading && (
+            <LoadMoreBtn text="Load More" callback={LoadMoreMovies} />
+          )}
         </Grid>
       )}
-      {loadingMovies && <Spinner />}
-      {currentPageMovies < totalPagesMovies &&
-        !loadingMovies &&
-        !searchTerm && (
-          <LoadMoreBtn text="Load More" callback={LoadMoreMovies} />
-        )}
     </>
   );
 };

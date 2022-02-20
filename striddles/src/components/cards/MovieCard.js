@@ -25,7 +25,7 @@ const Description = styled.p`
   text-align: center;
 `;
 
-const Rating = styled.p `
+const Rating = styled.p`
     color: black;
     text-align: center;
 `;

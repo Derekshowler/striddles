@@ -7,7 +7,7 @@ const StyledSearchBar = styled.div`
 `;
 
 const StyledSearchBarContent = styled.div`
-  max-width: 480px;
+  max-width: 500px;
   width: 100%;
   height: 55px;
   border: 4px solid #056676;
@@ -28,7 +28,7 @@ const StyledSearchBarContent = styled.div`
   input {
     font-family: 'Caveat', cursive;
     text-align: center;
-    font-size: 28px;
+    font-size: 38px;
     position: absolute;
     left: 0px;
     margin: 8px 0;
@@ -70,7 +70,7 @@ const SearchBar = ({ callback }) => {
       <StyledSearchBarContent>
         <input
           type="text"
-          placeholder="Search for any movie or series"
+          placeholder="Search for anything!"
           onChange={doSearch}
           value={state}
         />

@@ -2,10 +2,21 @@ import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 
+const GridContainer = styled.div`
+
+`
+
+const GridRow = styled.div`
+
+`
+
+const GridColumn = styled.div`
+
+`
+
+
 const StyledGrid = styled.div`
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 0 20px;
+  padding: 10px;
   h1 {
     font-family: 'Caveat', cursive;
     color: #eeeeee;
@@ -19,9 +30,8 @@ const StyledGrid = styled.div`
 `;
 
 const StyledGridContent = styled.div`
-  display: grid;
-  grid-template-columns: repeat(5, minmax(100px, 1fr));
-  grid-gap: 20px;
+  display: flex;
+  overflow-x: auto;
   position: relative;
 
   @media screen and (max-width: 1024px) {
@@ -38,6 +48,15 @@ const StyledGridContent = styled.div`
 
   @media screen and (max-width: 375px) {
     grid-template-columns: repeat(1, 1fr);
+  }
+
+  ::-webkit-scrollbar {
+    width: 0;  /* Remove scrollbar space */
+    background: transparent;  /* Optional: just make scrollbar invisible */
+  }
+  /* Optional: show position indicator in red */
+  ::-webkit-scrollbar-thumb {
+      background: #FF0000;
   }
 `;
 

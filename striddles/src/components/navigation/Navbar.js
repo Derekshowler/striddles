@@ -25,13 +25,11 @@ const StyledHeader = styled.div`
   box-sizing: border-box;
   margin-bottom: 10px;
   background-color: #e8ded2;
-  border: 2px solid #056676;
-  border-radius: 10px;
 
   .header-content {
     max-width: 1280px;
-    min-height: 55px;
-    padding: 20px 0px;
+    min-height: 25px;
+    padding: 5px 0px;
     margin: 0 auto;
     display: flex;
 
@@ -42,14 +40,12 @@ const StyledHeader = styled.div`
   }
 
     .striddlesHomeLink {
-        width: 250px;
+        width: 125px;
         font-size: 35px;
         font-family: 'Caveat';
         color: #056676;
         text-decoration: none;
         padding: 8px;
-        border: 2px solid #056676;
-        border-radius: 3px;
 
         @media screen and (max-width: 500px) {
             width: 150px;
@@ -67,13 +63,13 @@ const StyledNavButton = styled.button `
     background: ${props => props.primary ? "#056676" : "#eeeeee"};
     color: ${props => props.primary ? "#eeeeee" : "#056676"};
     margin: 5px;
-    padding: 0.6em 1em;
+    padding: .3em 1em 0em 1em;
     border: 2px solid #056676;
     border-radius: 3px;
     float: right;
     text-decoration: none;
     font-family: 'Caveat', cursive;
-    font-size: 20px;
+    font-size: 25px;
 
     @media screen and (max-width: 500px) {
         display: inline-block;
@@ -112,7 +108,6 @@ const StyledTMDBLogo = styled.img`
 
 
 const Navbar = () => {
-
   const [
     {
       state: { TV_Data, currentPage, totalPages },
@@ -122,10 +117,8 @@ const Navbar = () => {
     fetchAPITrendingSeriesData,
   ] = useHomeFetch();
   const [searchTerm, setSearchTerm] = useState("");
-
   const searchMovies = (search) => {
     const endpoint = search ? SEARCH_BASE_URL + search : TRENDING_TV_URL;
-
     setSearchTerm(search);
     fetchAPITrendingSeriesData(endpoint);
   };
@@ -135,9 +128,7 @@ const Navbar = () => {
       currentPage + 1
     }`;
     const trendingSeriesEndpoint = `${TRENDING_TV_URL}&page=${currentPage + 1}`;
-
     const endpoint = searchTerm ? searchEndpoint : trendingSeriesEndpoint;
-
     fetchAPITrendingSeriesData(endpoint);
   };
 
@@ -153,7 +144,6 @@ const Navbar = () => {
     </StyledHeader>
 
     <Grid header={searchTerm}>
-    
     {!searchTerm || (
       TV_Data.map((dataId) => (
           <Card
@@ -172,7 +162,6 @@ const Navbar = () => {
           />
         ))
         )}
-        
         {!searchTerm || currentPage < totalPages && !loading && (
         <LoadMoreBtn text="Load More" callback={loadMoreSeries} />
         )}
