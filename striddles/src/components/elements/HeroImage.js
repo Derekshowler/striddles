@@ -79,12 +79,12 @@ const StyledHeroImage = styled.div`
 
 const HeroImage = ({
   image,
-  fetchContentId,
+  fetchDetails,
   originalName,
   originalTitle,
   text,
 }) => (
-  <Link to = {`${fetchContentId}`} >
+  <Link to = {`${fetchDetails}`} >
     <StyledHeroImage image={image}>
       <div className="heroimage-content">
         <div className="heroimage-text">

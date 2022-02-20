@@ -1,7 +1,7 @@
 import { useState, useEffect, useCallback } from "react";
 import { API_URL, API_KEY } from "../../config";
 
-export const useContentFetch = (fetchContentId) => {
+export const useDetailsFetch = (fetchDetails) => {
   const [state, setState] = useState({});
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
@@ -11,15 +11,11 @@ export const useContentFetch = (fetchContentId) => {
     setLoading(true);
 
     try {
-      const endpoint = `${API_URL}${decodeURIComponent(fetchContentId)}?api_key=${API_KEY}`;
-      console.log(endpoint);
+      const endpoint = `${API_URL}${decodeURIComponent(fetchDetails)}?api_key=${API_KEY}`;
       const result = await (await fetch(endpoint)).json();
-      console.log(result);
-      const creditsEndpoint = `${API_URL}${decodeURIComponent(fetchContentId)}/credits?api_key=${API_KEY}`;
+      const creditsEndpoint = `${API_URL}${decodeURIComponent(fetchDetails)}/credits?api_key=${API_KEY}`;
       const creditsResult = await (await fetch(creditsEndpoint)).json();
-      const directors = creditsResult.crew.filter(
-        (member) => member.job === "Director"
-      );
+      const directors = creditsResult.crew.filter((member) => member.job === "Director");
 
       setState({
         ...result,
@@ -27,25 +23,25 @@ export const useContentFetch = (fetchContentId) => {
         directors,
       });
       console.log(fetchData);
-      console.log(fetchContentId);
+      console.log(fetchDetails);
     } catch (error) {
       setError(true);
     }
     setLoading(false);
-  }, [fetchContentId]);
+  }, [fetchDetails]);
 
   useEffect(() => {
-    if (localStorage[fetchContentId]) {
-      setState(JSON.parse(localStorage[fetchContentId]));
+    if (localStorage[fetchDetails]) {
+      setState(JSON.parse(localStorage[fetchDetails]));
       setLoading(false);
     } else {
       fetchData();
     }
-  }, [fetchData, fetchContentId]);
+  }, [fetchData, fetchDetails]);
 
   useEffect(() => {
-    localStorage.setItem(fetchContentId, JSON.stringify(state));
-  }, [fetchContentId, state]);
+    localStorage.setItem(fetchDetails, JSON.stringify(state));
+  }, [fetchDetails, state]);
 
   return [state, loading, error];
 };

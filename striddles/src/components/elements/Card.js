@@ -70,16 +70,17 @@ const CardTitle = styled.span`
 //contentId comes from the grid setup on homepage where we initially grab the items
 const Card = ({
   image,
-  fetchContentId,
+  fetchDetails,
   clickable,
   name,
   originalTitle,
+  title,
   voteAverage,
 }) => (
-  <Link to={`${fetchContentId}`}>
+  <Link to={`${fetchDetails}`}>
   <CardContainer>
     {clickable ? (
-      <CardImg className="clickable" src={image} alt="card" />
+        <CardImg className="clickable" src={image} alt="card" />
       ) : (
         <CardImg src={image} alt="card" />
       )}
@@ -95,7 +96,7 @@ const Card = ({
 
 Card.propTypes = {
   image: PropTypes.string,
-  fetchContentId: PropTypes.string,
+  fetchDetails: PropTypes.string,
   clickable: PropTypes.bool,
 };
 

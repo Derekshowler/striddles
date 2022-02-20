@@ -17,7 +17,7 @@ import LoadMoreBtn from "../elements/LoadMoreBtn";
 import HeroImage from "../elements/HeroImage";
 
 //import custom hook
-import { useHomeFetch } from "../../components/hooks/useHomeFetch";
+import { useSeriesFetch } from "../hooks/useSeriesFetch";
 import { useMovieFetch } from "../hooks/useMovieFetch";
 import NoImage from "../../components/assets/images/no_image.jpg";
 
@@ -29,36 +29,21 @@ const Home = () => {
       loading,
       error,
     },
-    fetchAPITrendingSeriesData,
-  ] = useHomeFetch();
-  
-  
-
+    getSeries,
+  ] = useSeriesFetch();
   
   const [searchTerm, setSearchTerm] = useState("");
-
   const searchMovies = (search) => {
     const endpoint = search ? SEARCH_BASE_URL + search : TRENDING_TV_URL;
-
     setSearchTerm(search);
-    fetchAPITrendingSeriesData(endpoint);
+    getSeries(endpoint);
   };
-
-  
-  
-  
-  
-  
   
   const loadMoreSeries = () => {
-    const searchEndpoint = `${SEARCH_BASE_URL}${searchTerm}&page=${
-      currentPage + 1
-    }`;
+    const searchEndpoint = `${SEARCH_BASE_URL}${searchTerm}&page=${currentPage + 1}`;
     const trendingSeriesEndpoint = `${TRENDING_TV_URL}&page=${currentPage + 1}`;
-
     const endpoint = searchTerm ? searchEndpoint : trendingSeriesEndpoint;
-
-    fetchAPITrendingSeriesData(endpoint);
+    getSeries(endpoint);
   };
 
   //API Fetch for Movies + Load More
@@ -77,10 +62,7 @@ const Home = () => {
   ] = useMovieFetch();
 
   const LoadMoreMovies = () => {
-    const popularMovieEndpoint = `${TRENDING_MOVIE_URL}&page=${
-      currentPageMovies + 1
-    }`;
-
+    const popularMovieEndpoint = `${TRENDING_MOVIE_URL}&page=${currentPageMovies + 1}`;
     fetchAPIPopularMovieData(popularMovieEndpoint);
   };
 
@@ -98,18 +80,14 @@ const Home = () => {
           image={`${IMAGE_BASE_URL}${BACKDROP_SIZE}${heroImage.backdrop_path}`}
           clickable
           nameId={heroImage.name}
-          fetchContentId={encodeURIComponent(
-            heroImage.media_type + "/" + heroImage.id
-          )}
+          fetchDetails={encodeURIComponent(heroImage.media_type + "/" + heroImage.id)}
           originalName={heroImage.name}
           originalTitle={heroImage.title}
           title={heroImage.original_name}
           text={heroImage.overview}
         />
       )}
-      {!searchTerm && (
-      
-      
+      {!searchTerm && (  
       
       <Grid header={"Trending TV"}>
         {TV_Data.map((dataId) => (
@@ -122,9 +100,7 @@ const Home = () => {
                 : NoImage
             }
             voteAverage={dataId.vote_average}
-            fetchContentId={encodeURIComponent(
-              dataId.media_type + "/" + dataId.id
-            )}
+            fetchDetails={encodeURIComponent(dataId.media_type + "/" + dataId.id)}
             name={dataId.name}
           />
         ))}
@@ -147,9 +123,7 @@ const Home = () => {
                   : NoImage
               }
               voteAverage={movieId.vote_average}
-              fetchContentId={encodeURIComponent(
-                movieId.media_type + "/" + movieId.id
-              )}
+              fetchDetails={encodeURIComponent(movieId.media_type + "/" + movieId.id)}
               fetchContentName={movieId.name}
               originalName={movieId.name}
               originalTitle={movieId.title}

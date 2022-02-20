@@ -9,10 +9,11 @@ import {
   POSTER_SIZE,
   BACKDROP_SIZE,
   IMAGE_BASE_URL,
+  SEARCH_BASE
 } from "../../config";
 
-
-import { useHomeFetch } from "../../components/hooks/useHomeFetch";
+import { useSearchFetch } from "../hooks/useSearchFetch";
+import { useSeriesFetch } from "../hooks/useSeriesFetch";
 import { useMovieFetch } from "../hooks/useMovieFetch";
 import NoImage from "../../components/assets/images/no_image.jpg";
 import Grid from "../elements/Grid";
@@ -110,26 +111,24 @@ const StyledTMDBLogo = styled.img`
 const Navbar = () => {
   const [
     {
-      state: { TV_Data, currentPage, totalPages },
+      state: { searchData, currentPage, totalPages },
       loading,
       error,
     },
-    fetchAPITrendingSeriesData,
-  ] = useHomeFetch();
+    getSearch,
+  ] = useSearchFetch();
   const [searchTerm, setSearchTerm] = useState("");
   const searchMovies = (search) => {
-    const endpoint = search ? SEARCH_BASE_URL + search : TRENDING_TV_URL;
+    const endpoint = search ? SEARCH_BASE_URL + search : SEARCH_BASE;
     setSearchTerm(search);
-    fetchAPITrendingSeriesData(endpoint);
+    getSearch(endpoint);
   };
 
   const loadMoreSeries = () => {
-    const searchEndpoint = `${SEARCH_BASE_URL}${searchTerm}&page=${
-      currentPage + 1
-    }`;
-    const trendingSeriesEndpoint = `${TRENDING_TV_URL}&page=${currentPage + 1}`;
+    const searchEndpoint = `${SEARCH_BASE_URL}${searchTerm}&page=${currentPage + 1}`;
+    const trendingSeriesEndpoint = `${SEARCH_BASE}&page=${currentPage + 1}`;
     const endpoint = searchTerm ? searchEndpoint : trendingSeriesEndpoint;
-    fetchAPITrendingSeriesData(endpoint);
+    getSearch(endpoint);
   };
 
   return (
@@ -145,20 +144,18 @@ const Navbar = () => {
 
     <Grid header={searchTerm}>
     {!searchTerm || (
-      TV_Data.map((dataId) => (
+      searchData.map((fetchDetails) => (
           <Card
-            key={dataId.id}
+            key={fetchDetails.id}
             clickable
             image={
-              dataId.poster_path
-                ? `${IMAGE_BASE_URL}${POSTER_SIZE}${dataId.poster_path}`
-                : NoImage
+              fetchDetails.poster_path
+              ? `${IMAGE_BASE_URL}${POSTER_SIZE}${fetchDetails.poster_path}`
+              : NoImage
             }
-            voteAverage={dataId.vote_average}
-            fetchContentId={encodeURIComponent(
-              dataId.media_type + "/" + dataId.id
-            )}
-            name={dataId.name}
+            voteAverage={fetchDetails.vote_average}
+            fetchDetails={encodeURIComponent(fetchDetails.media_type + "/" + fetchDetails.id)}
+            name={fetchDetails.title || fetchDetails.name}
           />
         ))
         )}

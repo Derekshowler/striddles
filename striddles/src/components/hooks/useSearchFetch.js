@@ -1,12 +1,12 @@
 import { useState, useEffect } from "react";
-import { TRENDING_TV_URL } from "../../config";
+import { SEARCH_BASE } from "../../config";
 
-export const useHomeFetch = () => {
-  const [state, setState] = useState({ TV_Data: [] });
+export const useSearchFetch = () => {
+  const [state, setState] = useState({ searchData: [] });
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
 
-  const fetchAPITrendingSeriesData = async (endpoint) => {
+  const getSearch = async (endpoint) => {
     setError(false);
     setLoading(true);
 
@@ -16,9 +16,9 @@ export const useHomeFetch = () => {
       const API_Result = await (await fetch(endpoint)).json();
       setState((previous_State) => ({
         ...previous_State,
-        TV_Data:
+        searchData:
           isLoadMore !== -1
-            ? [...previous_State.TV_Data, ...API_Result.results]
+            ? [...previous_State.searchData, ...API_Result.results]
             : [...API_Result.results.slice(0, 20)],
         heroImage:
           previous_State.heroImage ||
@@ -37,8 +37,8 @@ export const useHomeFetch = () => {
   };
   console.log(state);
   useEffect(() => {
-    fetchAPITrendingSeriesData(TRENDING_TV_URL);
+    getSearch(SEARCH_BASE);
   }, []);
 
-  return [{ state, loading, error }, fetchAPITrendingSeriesData];
+  return [{ state, loading, error }, getSearch];
 };

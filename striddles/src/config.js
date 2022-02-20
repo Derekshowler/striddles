@@ -6,6 +6,7 @@ const API_KEY = "11029839cf307d459df641c39e029d7b";
 const SEARCH_BASE_URL = `${API_URL}search/multi?api_key=${API_KEY}&query=`;
 const TRENDING_MOVIE_URL = `${API_URL}trending/movie/day?api_key=${API_KEY}`;
 const TRENDING_TV_URL = `${API_URL}trending/tv/day?api_key=${API_KEY}`;
+const SEARCH_BASE = `${API_URL}trending/tv/day?api_key=${API_KEY}`;
 
 const IMAGE_BASE_URL = "http://image.tmdb.org/t/p/";
 
@@ -23,4 +24,5 @@ export {
   IMAGE_BASE_URL,
   BACKDROP_SIZE,
   POSTER_SIZE,
+  SEARCH_BASE
 };

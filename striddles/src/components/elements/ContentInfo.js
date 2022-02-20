@@ -92,6 +92,19 @@ const StyledContentInfo = styled.div`
     margin: 15px 0 0 0;
   }
 
+  .release{
+    font-family: "Abel", sans-serif;
+    font-size: 18px;
+    line-height: 26px;
+    margin: 15px 0 0 0;
+  }
+
+  .release_container{
+    position: absolute;
+    border-radius: 10%;
+    color: #fff;
+  }
+
   .director {
     margin: 0 0 0 40px;
 
@@ -157,6 +170,13 @@ const ContentInfo = ({ state }) => (
           <div>
             <h3>RATING</h3>
             <div className="score">{state.vote_average}</div>
+          </div>
+        </div>
+
+        <div className ="release_container">
+          <div>
+            <h3>RELEASE DATE:</h3>
+            <div className = "release">{state.release_date}{state.first_air_date}</div>
           </div>
         </div>
       </div>

@@ -12,10 +12,10 @@ import People from "../elements/People";
 import Grid from "../elements/Grid";
 import Spinner from "../elements/Spinner";
 
-import { useContentFetch } from "../hooks/useContentFetch";
+import { useDetailsFetch } from "../hooks/useDetailsFetch";
 
-const ContentPage = ({ fetchContentId }) => {
-  const [state, loading, error] = useContentFetch(fetchContentId);
+const ContentPage = ({ fetchDetails }) => {
+  const [state, loading, error] = useDetailsFetch(fetchDetails);
   console.log(state);
 
   if (loading) return <Spinner></Spinner>;
