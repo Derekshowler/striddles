@@ -21,14 +21,14 @@ const ContentPage = ({ fetchDetails }) => {
   if (loading) return <Spinner></Spinner>;
 
   return (
-    <div>
-      <ContentInfo state={state} />
+    <>
+      <ContentInfo state={state}></ContentInfo>
       <ContentInfoBar
         time={state.runtime || state.episode_run_time}
         budget={state.budget}
         genre={state.genres}
       />
-    </div>
+    </>
   );
 };
 

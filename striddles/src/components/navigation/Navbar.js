@@ -1,7 +1,12 @@
 import React, { useState } from "react";
 import styled from 'styled-components';
 import SearchBar from '../elements/SearchBar';
-
+import { useSearchFetch } from "../hooks/useSearchFetch";
+import NoImage from "../../components/assets/images/no_image.jpg";
+import Grid from "../elements/Grid";
+import Card from "../elements/Card";
+import Spinner from "../elements/Spinner";
+import LoadMoreBtn from "../elements/LoadMoreBtn";
 import {
   TRENDING_MOVIE_URL,
   TRENDING_TV_URL,
@@ -12,14 +17,6 @@ import {
   SEARCH_BASE
 } from "../../config";
 
-import { useSearchFetch } from "../hooks/useSearchFetch";
-import { useSeriesFetch } from "../hooks/useSeriesFetch";
-import { useMovieFetch } from "../hooks/useMovieFetch";
-import NoImage from "../../components/assets/images/no_image.jpg";
-import Grid from "../elements/Grid";
-import Card from "../elements/Card";
-import Spinner from "../elements/Spinner";
-import LoadMoreBtn from "../elements/LoadMoreBtn";
 
 const StyledHeader = styled.div`
   padding: 0 20px;
@@ -131,6 +128,8 @@ const Navbar = () => {
     getSearch(endpoint);
   };
 
+  //  Grid Section & Header
+  //  If no search term, the grid will not be shown
   return (
     <>
     <StyledHeader>
@@ -143,25 +142,25 @@ const Navbar = () => {
     </StyledHeader>
 
     <Grid header={searchTerm}>
-    {!searchTerm || (
-      searchData.map((fetchDetails) => (
-          <Card
-            key={fetchDetails.id}
-            clickable
-            image={
-              fetchDetails.poster_path
-              ? `${IMAGE_BASE_URL}${POSTER_SIZE}${fetchDetails.poster_path}`
-              : NoImage
-            }
-            voteAverage={fetchDetails.vote_average}
-            fetchDetails={encodeURIComponent(fetchDetails.media_type + "/" + fetchDetails.id)}
-            name={fetchDetails.title || fetchDetails.name}
-          />
-        ))
-        )}
-        {!searchTerm || currentPage < totalPages && !loading && (
+      {!searchTerm || (
+        searchData.map((fetchDetails) => (
+            <Card
+              key={fetchDetails.id}
+              clickable
+              image={
+                fetchDetails.poster_path
+                ? `${IMAGE_BASE_URL}${POSTER_SIZE}${fetchDetails.poster_path}`
+                : NoImage
+              }
+              voteAverage={fetchDetails.vote_average}
+              fetchDetails={encodeURIComponent(fetchDetails.media_type + "/" + fetchDetails.id)}
+              name={fetchDetails.title || fetchDetails.name}
+            />
+          ))
+      )}
+      {!searchTerm || currentPage < totalPages && !loading && (
         <LoadMoreBtn text="Load More" callback={loadMoreSeries} />
-        )}
+      )}
     </Grid>
   </>
   );

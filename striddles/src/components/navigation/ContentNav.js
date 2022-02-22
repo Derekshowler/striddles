@@ -4,12 +4,12 @@ import { Router, Link } from '@reach/router';
 import styled from 'styled-components';
 
 const StyledNavigation = styled.div`
-  display: flex;
+  display: absolute;
   align-items: center;
   max-width: 1280px;
   height: 70px;
   background: rgb(10, 10, 10, 0);
-  color: #056676;
+  color: #000;
   margin: 0 auto;
   border-radius: 20px;
   position: relative;
@@ -23,12 +23,14 @@ const StyledNavigation = styled.div`
     margin: 0 auto;
     padding: 0 20px;
     width: 100%;
+    border-radius: 10%;
+    background-color: rgba(0, 0, 0, 0.808);
 
     p {
       font-family: 'Abel', sans-serif;
       font-size: 22px;
       float: left;
-      color: #e8ded2;
+      color: #fff;
       padding-right: 10px;
 
       @media screen and (max-width: 768px) {

@@ -16,7 +16,7 @@ const App = () => (
     <Navbar></Navbar>
     <Router>
       <Home path="/"></Home>
-      <ContentPage path="/:fetchDetails" />
+      <ContentPage path="/:fetchDetails"/>
       <NotFound default></NotFound>
       <Login path="/login"></Login>
       <Register path="/register"></Register>
