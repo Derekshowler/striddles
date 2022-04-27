@@ -35,7 +35,6 @@ export const useSearchFetch = () => {
     }
     setLoading(false);
   };
-  console.log(state);
   useEffect(() => {
     getSearch(SEARCH_BASE);
   }, []);

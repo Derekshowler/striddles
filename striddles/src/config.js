@@ -12,7 +12,6 @@ const IMAGE_BASE_URL = "http://image.tmdb.org/t/p/";
 
 const BACKDROP_SIZE = "w1280";
 const POSTER_SIZE = "w500";
-
 const OMDB_API_URL = "http://www.omdbapi.com/?apikey=9c6a0021";
 
 export {

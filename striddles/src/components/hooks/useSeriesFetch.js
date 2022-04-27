@@ -35,7 +35,6 @@ export const useSeriesFetch = () => {
     }
     setLoading(false);
   };
-  console.log(state);
   useEffect(() => {
     getSeries(TRENDING_TV_URL);
   }, []);

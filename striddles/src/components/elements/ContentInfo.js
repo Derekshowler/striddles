@@ -5,7 +5,9 @@ import Card from "./Card";
 import NoImage from "../../components/assets/images/no_image.jpg";
 import styled from "styled-components";
 import ContentNav from "../../components/navigation/ContentNav";
-import Grid from "../elements/Grid"
+import Grid from "../elements/Grid";
+import ContentInfoBar from "./ContentInfoBar";
+import Actor from "../elements/ActorProfile";
 
 const DetailsContainer = styled.div`
     background: ${(props) =>
@@ -91,9 +93,9 @@ const DetailsText = styled.text`
 
 const DetailsRatingContainer = styled.div`
     color: #fff;
-    display: flex;
     overflow-x: auto;
     position: relative;
+    display: flex;
 `;
 
 const DetailsRating = styled.div`
@@ -131,7 +133,7 @@ const DetailsRelease = styled.div`
 `;
 
 
-const ContentInfo = ({ state }) => (
+const ContentInfo = ({ state, time, budget, genres }) => (
   <>
     <ContentNav className = "Content Nav" dataId={state.name || state.title}></ContentNav>
     <DetailsContainer className = "details_container" backdrop={state.backdrop_path}></DetailsContainer>
@@ -152,15 +154,18 @@ const ContentInfo = ({ state }) => (
             <DetailsRating className = "details_rating">
                 <DetailsHeader3 className = "details_header3">Rating:</DetailsHeader3>
                 <DetailsScore className = "details_score">{state.vote_average}</DetailsScore>
-                <DetailsDate className = "details_date">
-              <DetailsHeader3 className = "deatils_header3">Release Date:</DetailsHeader3>
-              <DetailsRelease className = "details_release">{state.release_date}{state.first_air_date}</DetailsRelease>
-            </DetailsDate>
+              <DetailsDate className = "details_date">
+                <DetailsHeader3 className = "deatils_header3">Release Date:</DetailsHeader3>
+                <DetailsRelease className = "details_release">{state.release_date}{state.first_air_date}</DetailsRelease>
+              </DetailsDate>
             </DetailsRating>
+            <ContentInfoBar time={state.runtime || state.episode_run_time} budget={state.budget} genre={state.genres}/>
           </DetailsRatingContainer>
       </DetailsInfo>
-      <Grid>
-        {state.similiar}
+      <Grid header = "Actors"> 
+          {state.actors.map((element, i) => (
+            <Actor key={i} actor={element} />
+          ))}
       </Grid>
   </>
 );

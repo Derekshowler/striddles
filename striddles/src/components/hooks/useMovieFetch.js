@@ -30,7 +30,6 @@ export const useMovieFetch = () => {
       }));
     } catch (errorMovies) {
       setErrorMovies(true);
-      console.log(errorMovies);
     } 
     setLoadingMovies(false);
   };

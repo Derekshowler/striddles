@@ -78,62 +78,62 @@ const Home = () => {
   //  
   return (
     <>
-      <HeroImage
-        image={`${IMAGE_BASE_URL}${BACKDROP_SIZE}${heroImage.backdrop_path}`}
-        clickable
-        nameId={heroImage.name}
-        fetchDetails={encodeURIComponent(heroImage.media_type + "/" + heroImage.id)}
-        originalName={heroImage.name}
-        originalTitle={heroImage.title}
-        title={heroImage.original_name}
-        text={heroImage.overview}
-      />
-
-    <Grid header={"Trending TV"}>
-      {TV_Data.map((dataId) => (
-        <Card
-          key={dataId.id}
+        <HeroImage
+          image={`${IMAGE_BASE_URL}${BACKDROP_SIZE}${heroImage.backdrop_path}`}
           clickable
-          image={
-            dataId.poster_path
-              ? `${IMAGE_BASE_URL}${POSTER_SIZE}${dataId.poster_path}`
-              : NoImage
-          }
-          voteAverage={dataId.vote_average}
-          fetchDetails={encodeURIComponent(dataId.media_type + "/" + dataId.id)}
-          name={dataId.name}
+          nameId={heroImage.name}
+          fetchDetails={encodeURIComponent(heroImage.media_type + "/" + heroImage.id)}
+          originalName={heroImage.name}
+          originalTitle={heroImage.title}
+          title={heroImage.original_name}
+          text={heroImage.overview}
         />
-      ))}
-      {loading && <Spinner />}
-      {currentPage < totalPages && !loading && (
-        <LoadMoreBtn text="Load More" callback={loadMoreSeries} />
-      )}
-    </Grid>
 
-    <Grid header="Trending Movies">
-      {Movie_Data.map((movieId) => (
-        <Card
-          key={movieId.id}
-          clickable
-          image={
-            movieId.poster_path
-              ? `${IMAGE_BASE_URL}${POSTER_SIZE}${movieId.poster_path}`
-              : NoImage
-          }
-          voteAverage={movieId.vote_average}
-          fetchDetails={encodeURIComponent(movieId.media_type + "/" + movieId.id)}
-          fetchContentName={movieId.name}
-          originalName={movieId.name}
-          originalTitle={movieId.title}
-          fetchMediaType={movieId.media_type}
-        />
-      ))}
-      {loadingMovies && <Spinner />}
-      {currentPage < totalPages && !loading && (
-        <LoadMoreBtn text="Load More" callback={LoadMoreMovies} />
-      )}
-    </Grid>
-  </>
+      <Grid header={"Trending TV"}>
+        {TV_Data.map((dataId) => (
+          <Card
+            key={dataId.id}
+            clickable={true}
+            image={
+              dataId.poster_path
+                ? `${IMAGE_BASE_URL}${POSTER_SIZE}${dataId.poster_path}`
+                : NoImage
+            }
+            voteAverage={dataId.vote_average}
+            fetchDetails={encodeURIComponent(dataId.media_type + "/" + dataId.id)}
+            name={dataId.name}
+          />
+        ))}
+        {loading && <Spinner />}
+        {currentPage < totalPages && !loading && (
+          <LoadMoreBtn text="Load More" callback={loadMoreSeries} />
+        )}
+      </Grid>
+
+      <Grid header="Trending Movies">
+        {Movie_Data.map((movieId) => (
+          <Card
+            key={movieId.id}
+            clickable={true}
+            image={
+              movieId.poster_path
+                ? `${IMAGE_BASE_URL}${POSTER_SIZE}${movieId.poster_path}`
+                : NoImage
+            }
+            voteAverage={movieId.vote_average}
+            fetchDetails={encodeURIComponent(movieId.media_type + "/" + movieId.id)}
+            fetchContentName={movieId.name}
+            originalName={movieId.name}
+            originalTitle={movieId.title}
+            fetchMediaType={movieId.media_type}
+          />
+        ))}
+        {loadingMovies && <Spinner />}
+        {currentPage < totalPages && !loading && (
+          <LoadMoreBtn text="Load More" callback={LoadMoreMovies} />
+        )}
+      </Grid>
+    </>
   );
 };
 

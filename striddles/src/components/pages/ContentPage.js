@@ -23,11 +23,7 @@ const ContentPage = ({ fetchDetails }) => {
   return (
     <>
       <ContentInfo state={state}></ContentInfo>
-      <ContentInfoBar
-        time={state.runtime || state.episode_run_time}
-        budget={state.budget}
-        genre={state.genres}
-      />
+      
     </>
   );
 };
