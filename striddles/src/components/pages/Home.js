@@ -25,52 +25,56 @@ const Home = () => {
   //API Fetch for Series and Search + Load More
   const [
     {
-      state: { TV_Data, currentPage, totalPages, },
+      series: { 
+        dataTV, 
+        currentPages, 
+        totalPages, 
+      },
       loading,
-      error,
+      errors,
     },
-    getSeries,
+    popularSeries,
   ] = useSeriesFetch();
   
   const [searchTerm, setSearchTerm] = useState("");
   const searchMovies = (search) => {
     const endpoint = search ? SEARCH_BASE_URL + search : TRENDING_TV_URL;
     setSearchTerm(search);
-    getSeries(endpoint);
+    popularSeries(endpoint);
   };
   
   const loadMoreSeries = () => {
-    const searchEndpoint = `${SEARCH_BASE_URL}${searchTerm}&page=${currentPage + 1}`;
-    const trendingSeriesEndpoint = `${TRENDING_TV_URL}&page=${currentPage + 1}`;
+    const searchEndpoint = `${SEARCH_BASE_URL}${searchTerm}&page=${currentPages + 1}`;
+    const trendingSeriesEndpoint = `${TRENDING_TV_URL}&page=${currentPages + 1}`;
     const endpoint = searchTerm ? searchEndpoint : trendingSeriesEndpoint;
-    getSeries(endpoint);
+    popularSeries(endpoint);
   };
 
   //API Fetch for Movies + Load More
   const [
     {
-      stateMovies: {
-        Movie_Data,
+      movies: {
+        data,
         heroImage,
-        currentPageMovies,
-        totalPagesMovies,
+        currentPage,
+        totalPage,
       },
-      loadingMovies,
-      errorMovies,
+      loadingMore,
+      error,
     },
-    fetchAPIPopularMovieData,
+    popularMovies,
   ] = useMovieFetch();
 
-  const LoadMoreMovies = () => {
-    const popularMovieEndpoint = `${TRENDING_MOVIE_URL}&page=${currentPageMovies + 1}`;
-    fetchAPIPopularMovieData(popularMovieEndpoint);
+  const loadingMovies = () => {
+    const nextPage = `${TRENDING_MOVIE_URL}&page=${currentPage + 1}`;
+    popularMovies(nextPage);
   };
 
   //Make sure we have data and no errors
-  if (error) return <div>Something went wrong with Series...</div>;
-  if (errorMovies) return <div>Something went wrong with Movies...</div>;
-  if (!TV_Data[0]) return <Spinner />;
-  if (!Movie_Data[0]) return <Spinner />;
+  if (errors) return <div>Something went wrong with Series...</div>;
+  if (error) return <div>Something went wrong with Movies...</div>;
+  if (!dataTV[0]) return <Spinner />;
+  if (!data[0]) return <Spinner />;
 
   
   //  Grid sections for:
@@ -89,8 +93,8 @@ const Home = () => {
           text={heroImage.overview}
         />
 
-      <Grid header={"Trending TV"}>
-        {TV_Data.map((dataId) => (
+      <Grid header={"Trending TV:"}>
+        {dataTV.map((dataId) => (
           <Card
             key={dataId.id}
             clickable={true}
@@ -105,13 +109,13 @@ const Home = () => {
           />
         ))}
         {loading && <Spinner />}
-        {currentPage < totalPages && !loading && (
+        {currentPages < totalPages && !loading && (
           <LoadMoreBtn text="Load More" callback={loadMoreSeries} />
         )}
       </Grid>
 
-      <Grid header="Trending Movies">
-        {Movie_Data.map((movieId) => (
+      <Grid header="Trending Movies:">
+        {data.map((movieId) => (
           <Card
             key={movieId.id}
             clickable={true}
@@ -128,9 +132,9 @@ const Home = () => {
             fetchMediaType={movieId.media_type}
           />
         ))}
-        {loadingMovies && <Spinner />}
+        {loadingMore && <Spinner />}
         {currentPage < totalPages && !loading && (
-          <LoadMoreBtn text="Load More" callback={LoadMoreMovies} />
+          <LoadMoreBtn text="Load More" callback={loadingMovies} />
         )}
       </Grid>
     </>

@@ -2,42 +2,42 @@ import { useState, useEffect } from "react";
 import { TRENDING_TV_URL } from "../../config";
 
 export const useSeriesFetch = () => {
-  const [state, setState] = useState({ TV_Data: [] });
+  const [series, setSeries] = useState({ dataTV: [] });
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(false);
+  const [errors, setErrors] = useState(false);
 
-  const getSeries = async (endpoint) => {
-    setError(false);
+  const popularSeries = async (serie) => {
+    setErrors(false);
     setLoading(true);
 
-    const isLoadMore = endpoint.search("page");
+    const loadMore = serie.search("page");
 
     try {
-      const API_Result = await (await fetch(endpoint)).json();
-      setState((previous_State) => ({
-        ...previous_State,
-        TV_Data:
-          isLoadMore !== -1
-            ? [...previous_State.TV_Data, ...API_Result.results]
-            : [...API_Result.results.slice(0, 20)],
+      const getSeries = await (await fetch(serie)).json();
+      setSeries((previousSerie) => ({
+        ...previousSerie,
+        dataTV:
+          loadMore !== -1
+            ? [...previousSerie.dataTV, ...getSeries.results]
+            : [...getSeries.results.slice(0, 20)],
         heroImage:
-          previous_State.heroImage ||
-          API_Result.results[
-            Math.floor(Math.random() * API_Result.results.length)
+          previousSerie.heroImage ||
+          getSeries.results[
+            Math.floor(Math.random() * getSeries.results.length)
           ],
-        currentPage: API_Result.page,
-        totalPages: API_Result.total_pages,
-        mediaType: API_Result.results.media_type,
+        currentPages: getSeries.page,
+        totalPages: getSeries.total_pages,
+        mediaType: getSeries.results.media_type,
       }));
-    } catch (error) {
-      setError(true);
-      console.log(error);
+    } catch (errors) {
+      setErrors(true);
+      console.log(errors);
     }
     setLoading(false);
   };
   useEffect(() => {
-    getSeries(TRENDING_TV_URL);
+    popularSeries(TRENDING_TV_URL);
   }, []);
 
-  return [{ state, loading, error }, getSeries];
+  return [{ series, loading, errors }, popularSeries];
 };

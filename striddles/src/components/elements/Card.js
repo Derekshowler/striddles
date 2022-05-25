@@ -13,7 +13,10 @@ const CardContainer = styled.div`
     display: flex;
     justify-content: space-around;
     margin: 1.55vw 1vw;
-    border-radius: 10px 10px 0 0;
+    background: #D82148;
+    border-radius: 20px;
+    padding: 5px;
+    
     transition: transform;
     transition-duration: 0.25s;
     color: white;
@@ -79,11 +82,10 @@ const Card = ({
 }) => (
   <Link to={`${fetchDetails}`}>
   <CardContainer>
-    {clickable ? (
+    
         <CardImg className="clickable" src={image} alt="card" />
-      ) : (
-        <CardImg src={image} alt="card" />
-      )}
+      
+    
       <CardTitleContainer>
       <CardTitle>
         {name}

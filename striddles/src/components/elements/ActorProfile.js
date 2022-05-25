@@ -7,11 +7,11 @@ import styled from 'styled-components';
 const StyledActor = styled.div`
   font-family: 'Abel', sans-serif;
   color: #fff;
-  background: #1c1c1c;
+  background: #D82148;
   border-radius: 20px;
   padding: 5px;
   text-align: center;
-  margin: 0 0 20px 20px;
+  margin: 1.55vw 1vw;
   
   img {
     display: block;

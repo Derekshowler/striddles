@@ -22,7 +22,8 @@ export const useDetailsFetch = (fetchDetails) => {
       setState({
         ...result,
         actors: creditsResult.cast,
-        directors,similar,
+        directors,
+        similar: similiarResult.results,
       });
       console.log(fetchData);
       console.log(fetchDetails);

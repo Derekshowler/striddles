@@ -10,7 +10,7 @@ const StyledSearchBarContent = styled.div`
   max-width: 500px;
   width: 100%;
   height: 55px;
-  border: 4px solid #056676;
+  border: 4px solid #151D3B;
   background: #eeeeee;
   margin: 0 auto;
   border-radius: 40px;

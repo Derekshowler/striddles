@@ -2,45 +2,43 @@ import { useState, useEffect } from "react";
 import { TRENDING_MOVIE_URL } from "../../config";
 
 export const useMovieFetch = () => {
-  const [stateMovies, setStateMovies] = useState({ Movie_Data: [] });
-  const [loadingMovies, setLoadingMovies] = useState(false);
-  const [errorMovies, setErrorMovies] = useState(false);
+  const [movies, setMovies] = useState({ data: [] });
+  const [loadingMore, setLoadingMore] = useState(false);
+  const [error, setError] = useState(false);
 
-  const fetchAPIPopularMovieData = async (endpointMovie) => {
-    setErrorMovies(false);
-    setLoadingMovies(true);
+  const popularMovies = async (movie) => {
+    setError(false);
+    setLoadingMore(true);
 
-    const isLoadMore = endpointMovie.search("page");
+    const loading = movie.search("page");
 
     try {
-      const API_Movie_Result = await (await fetch(endpointMovie)).json();
-      setStateMovies((previous_StateMovie) => ({
-        ...previous_StateMovie,
-        Movie_Data:
-          isLoadMore !== -1
-            ? [...previous_StateMovie.Movie_Data, ...API_Movie_Result.results]
-            : [...API_Movie_Result.results.slice(0, 20)],
+      const getMovie = await (await fetch(movie)).json();
+      setMovies((previousMovie) => ({
+        ...previousMovie,
+        data:
+          loading !== -1
+            ? [...previousMovie.data, ...getMovie.results]
+            : [...getMovie.results.slice(0, 20)],
         heroImage:
-          previous_StateMovie.heroImage ||
-          API_Movie_Result.results[
-            Math.floor(Math.random() * API_Movie_Result.results.length)
+          previousMovie.heroImage ||
+          getMovie.results[
+            Math.floor(Math.random() * getMovie.results.length)
           ],
-        currentPageMovies: API_Movie_Result.page,
-        totalPagesMovies: API_Movie_Result.total_pages,
+        currentPage: getMovie.page,
+        totalPage: getMovie.total_pages,
       }));
     } catch (errorMovies) {
-      setErrorMovies(true);
+      setError(true);
     } 
-    setLoadingMovies(false);
+    setLoadingMore(false);
   };
-  console.log(stateMovies);
 
   useEffect(() => {
-    fetchAPIPopularMovieData(TRENDING_MOVIE_URL);
+    popularMovies(TRENDING_MOVIE_URL);
   }, []);
 
   return [
-    { stateMovies, loadingMovies, errorMovies },
-    fetchAPIPopularMovieData,
+    { movies, loadingMore, error }, popularMovies,
   ];
 };

@@ -62,6 +62,7 @@ const DetailsInfo = styled.div`
 
 const DetailsHeader1 = styled.h1`
     font-family: "Abel", sans-serif;
+    line-height: 55px;
     font-size: 48px;
     margin: 60px 0 0 0;
 
@@ -84,11 +85,12 @@ const DetailsParagraph = styled.p`
     margin: 15px 25px 0 0px;
 `;
 
-const DetailsText = styled.text`
+const DetailsText = styled.div`
     font-family: Arial, Helvetica, sans-serif;
-    padding: 40px;
+    line-height: 26px;
+    margin: 15px 25px 10px 0px;
     color: #fff;
-    overflow: hidden;
+    overflow: auto;
 `;
 
 const DetailsRatingContainer = styled.div`
@@ -140,8 +142,11 @@ const ContentInfo = ({ state, time, budget, genres }) => (
     <DetailsInfo className = "details_info">
           <DetailsCard className = "details_card">
             <Card
-              image={state.poster_path ? `${IMAGE_BASE_URL}${POSTER_SIZE}${state.poster_path}` : NoImage}
-              clickable={false}
+              image={
+                state.poster_path 
+                  ? `${IMAGE_BASE_URL}${POSTER_SIZE}${state.poster_path}` 
+                  : NoImage
+                }
               alt="cardthumb"
             />
           </DetailsCard>
@@ -165,8 +170,31 @@ const ContentInfo = ({ state, time, budget, genres }) => (
       <Grid header = "Actors"> 
           {state.actors.map((element, i) => (
             <Actor key={i} actor={element} />
-          ))}
+          ))} 
       </Grid>
+      {/* <Grid header="You may also like:">
+        {state.similiar.map((movieId) => (
+          <Card
+            key={movieId.id}
+            clickable={true}
+            image={
+              movieId.poster_path
+                ? `${IMAGE_BASE_URL}${POSTER_SIZE}${movieId.poster_path}`
+                : NoImage
+            }
+            voteAverage={movieId.vote_average}
+            fetchDetails={encodeURIComponent(movieId.media_type + "/" + movieId.id)}
+            fetchContentName={movieId.name}
+            originalName={movieId.name}
+            originalTitle={movieId.title}
+            fetchMediaType={movieId.media_type}
+          />
+        ))}
+        {loadingMore && <Spinner />}
+        {currentPage < totalPages && !loading && (
+          <LoadMoreBtn text="Load More" callback={loadingMovies} />
+        )}
+      </Grid> */}
   </>
 );
 

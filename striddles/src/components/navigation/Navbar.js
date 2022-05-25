@@ -22,7 +22,7 @@ const StyledHeader = styled.div`
   padding: 0 20px;
   box-sizing: border-box;
   margin-bottom: 10px;
-  background-color: #e8ded2;
+  background-color: #D82148;
 
   .header-content {
     max-width: 1280px;
@@ -41,7 +41,7 @@ const StyledHeader = styled.div`
         width: 125px;
         font-size: 35px;
         font-family: 'Caveat';
-        color: #056676;
+        color: #151D3B;
         text-decoration: none;
         padding: 8px;
 
@@ -136,8 +136,8 @@ const Navbar = () => {
         <div className = "header-content">
             <a className = "striddlesHomeLink" href = "/">Striddles</a>
             <SearchBar callback={searchMovies}></SearchBar>
-            <StyledNavButton primary as="a" href="/login">Login</StyledNavButton>
-            <StyledNavButton as="a" href="/register">Register</StyledNavButton>
+            {/* <StyledNavButton primary as="a" href="/login">Login</StyledNavButton>
+            <StyledNavButton as="a" href="/register">Register</StyledNavButton> */}
         </div>
     </StyledHeader>
 

@@ -8,6 +8,7 @@ const StyledLoadMoreBtn = styled.button`
   padding: 20px;
   text-align: center;
   z-index: 1;
+  background-color: #D82148;
 
   @media screen and (max-width: 500px) {
       display: inline-block;
@@ -17,7 +18,7 @@ const StyledLoadMoreBtn = styled.button`
 
   :hover {
     opacity: 0.8;
-    box-shadow: 0 4px 2rem -4px #FFFFFF;
+    box-shadow: 0 4px 2rem -4px #D82148;
     transform: translateY(-3px);
   }
 `;
