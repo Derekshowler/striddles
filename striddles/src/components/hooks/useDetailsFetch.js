@@ -16,17 +16,16 @@ export const useDetailsFetch = (fetchDetails) => {
       const creditsEndpoint = `${API_URL}${decodeURIComponent(fetchDetails)}/credits?api_key=${API_KEY}`;
       const creditsResult = await (await fetch(creditsEndpoint)).json();
       const directors = creditsResult.crew.filter((member) => member.job === "Director");
-      const similar = `${API_URL}${decodeURIComponent(fetchDetails)}/similar/?api_key=${API_KEY}`;
-      const similiarResult = await (await fetch(similar)).json();
+      const similar = `${API_URL}${decodeURIComponent(fetchDetails)}/similar?api_key=${API_KEY}`;
+      const similarResult = await (await fetch(similar)).json();
 
       setState({
         ...result,
         actors: creditsResult.cast,
         directors,
-        similar: similiarResult.results,
+        similarMovies: similarResult.results,
       });
-      console.log(fetchData);
-      console.log(fetchDetails);
+      console.log(similar);
     } catch (error) {
       setError(true);
     }

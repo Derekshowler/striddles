@@ -2,41 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import NoImage from "../../components/assets/images/no_image.jpg";
 import { IMAGE_BASE_URL, POSTER_SIZE } from '../../config';
-import styled from 'styled-components';
-
-const StyledActor = styled.div`
-  font-family: 'Abel', sans-serif;
-  color: #fff;
-  background: #D82148;
-  border-radius: 20px;
-  padding: 5px;
-  text-align: center;
-  margin: 1.55vw 1vw;
-  
-  img {
-    display: block;
-    height: 20vw;
-    width: 15vw;
-    object-fit: cover;
-    border-radius: 15px;
-  }
-  .actor-name {
-    display: block;
-    font-size: 18px;
-    margin: 15px 0 0 0;
-  }
-  .as-actor {
-    display: block;
-    font-size: 18px;
-    margin: 5px 0 0 0;
-  }
-  .actor-character {
-    display: block;
-    font-size: 16px;
-    margin: 5px 0 10px 0;
-  }
-`;
-
+import StyledActor from "../../_styles/component_styles/element_styles/actor";
 
 const Actor = ({ actor }) => (
   <StyledActor>

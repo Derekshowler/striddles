@@ -8,7 +8,6 @@ import React from "react";
 import ContentNav from "../navigation/ContentNav";
 import ContentInfo from "../elements/ContentInfo";
 import ContentInfoBar from "../elements/ContentInfoBar";
-import People from "../elements/People";
 import Grid from "../elements/Grid";
 import Spinner from "../elements/Spinner";
 

@@ -3,13 +3,14 @@ import {
   TRENDING_MOVIE_URL,
   TRENDING_TV_URL,
   SEARCH_BASE_URL,
+  NOW_PLAYING,
   POSTER_SIZE,
   BACKDROP_SIZE,
   IMAGE_BASE_URL,
 } from "../../config";
 
 //import components we want to use on this page..
-import SearchBar from "../elements/SearchBar";
+
 import Grid from "../elements/Grid";
 import Card from "../elements/Card";
 import Spinner from "../elements/Spinner";
@@ -19,21 +20,21 @@ import HeroImage from "../elements/HeroImage";
 //import custom hook
 import { useSeriesFetch } from "../hooks/useSeriesFetch";
 import { useMovieFetch } from "../hooks/useMovieFetch";
+import { useTheatreFetch } from "../hooks/getNowPlaying";
+
 import NoImage from "../../components/assets/images/no_image.jpg";
 
 const Home = () => {
   //API Fetch for Series and Search + Load More
-  const [
-    {
-      series: { 
-        dataTV, 
-        currentPages, 
-        totalPages, 
-      },
-      loading,
-      errors,
+  const [{ series: { 
+      dataTV, 
+      currentPages, 
+      totalPages, 
     },
-    popularSeries,
+    loading,
+    errors,
+  },
+  popularSeries,
   ] = useSeriesFetch();
   
   const [searchTerm, setSearchTerm] = useState("");
@@ -50,19 +51,33 @@ const Home = () => {
     popularSeries(endpoint);
   };
 
+  const [{ playing: { 
+    dataPlaying, 
+    currentPlaying, 
+    totalPlaying, 
+  },
+  loadPlaying,
+  playingErrors,
+},
+nowPlaying,
+] = useTheatreFetch(); 
+
+const loadMorePlaying = () => {
+  const nextPlaying = `${NOW_PLAYING}&page=${currentPlaying + 1}`;
+  nowPlaying(nextPlaying);
+};
+
   //API Fetch for Movies + Load More
-  const [
-    {
-      movies: {
-        data,
-        heroImage,
-        currentPage,
-        totalPage,
-      },
-      loadingMore,
-      error,
+  const [{ movies: {
+      data,
+      heroImage,
+      currentPage,
+      totalPage,
     },
-    popularMovies,
+    loadingMore,
+    error,
+  },
+  popularMovies,
   ] = useMovieFetch();
 
   const loadingMovies = () => {
@@ -73,13 +88,14 @@ const Home = () => {
   //Make sure we have data and no errors
   if (errors) return <div>Something went wrong with Series...</div>;
   if (error) return <div>Something went wrong with Movies...</div>;
+  //if (playingErrors) return <div>Something went wrong with Now Playing...</div>;
   if (!dataTV[0]) return <Spinner />;
   if (!data[0]) return <Spinner />;
+  //if (!dataPlaying[0]) return <Spinner />;
 
   
   //  Grid sections for:
   //  Hero image, trending tv, trending movies
-  //  
   return (
     <>
         <HeroImage
@@ -133,10 +149,31 @@ const Home = () => {
           />
         ))}
         {loadingMore && <Spinner />}
-        {currentPage < totalPages && !loading && (
+        {currentPage < totalPage && !loading && (
           <LoadMoreBtn text="Load More" callback={loadingMovies} />
         )}
       </Grid>
+
+      {/* <Grid header = "Now Playing:">
+        {dataPlaying.map((data) => (
+            <Card
+              key={data.id}
+              clickable={false}
+              image={
+                data.poster_path
+                  ? `${IMAGE_BASE_URL}${POSTER_SIZE}${data.poster_path}`
+                  : NoImage
+              }
+              voteAverage={data.vote_average}
+              fetchDetails={encodeURIComponent("movie" + "/" + data.id)}
+              name={data.name}
+            />
+          ))}
+          {loadPlaying && <Spinner />}
+          {currentPlaying < totalPlaying && !loadPlaying && (
+            <LoadMoreBtn text="Load More" callback={loadMorePlaying} />
+          )}
+      </Grid> */}
     </>
   );
 };

@@ -44,7 +44,9 @@ const StyledHeader = styled.div`
         color: #151D3B;
         text-decoration: none;
         padding: 8px;
-
+        border-radius: 10px;
+        border: 1px solid #151D3B;
+        
         @media screen and (max-width: 500px) {
             width: 150px;
         }

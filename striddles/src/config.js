@@ -7,6 +7,7 @@ const SEARCH_BASE_URL = `${API_URL}search/multi?api_key=${API_KEY}&query=`;
 const TRENDING_MOVIE_URL = `${API_URL}trending/movie/day?api_key=${API_KEY}`;
 const TRENDING_TV_URL = `${API_URL}trending/tv/day?api_key=${API_KEY}`;
 const SEARCH_BASE = `${API_URL}trending/tv/day?api_key=${API_KEY}`;
+const NOW_PLAYING = `${API_URL}movie/now_playing?api_key=${API_KEY}&language=en-US&page=1`;
 
 const IMAGE_BASE_URL = "http://image.tmdb.org/t/p/";
 
@@ -20,6 +21,7 @@ export {
   SEARCH_BASE_URL,
   TRENDING_MOVIE_URL,
   TRENDING_TV_URL,
+  NOW_PLAYING,
   IMAGE_BASE_URL,
   BACKDROP_SIZE,
   POSTER_SIZE,

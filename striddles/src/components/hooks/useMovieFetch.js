@@ -11,7 +11,6 @@ export const useMovieFetch = () => {
     setLoadingMore(true);
 
     const loading = movie.search("page");
-
     try {
       const getMovie = await (await fetch(movie)).json();
       setMovies((previousMovie) => ({
@@ -28,16 +27,16 @@ export const useMovieFetch = () => {
         currentPage: getMovie.page,
         totalPage: getMovie.total_pages,
       }));
+      console.log(getMovie);
+      
     } catch (errorMovies) {
       setError(true);
     } 
     setLoadingMore(false);
   };
-
   useEffect(() => {
     popularMovies(TRENDING_MOVIE_URL);
   }, []);
-
   return [
     { movies, loadingMore, error }, popularMovies,
   ];
